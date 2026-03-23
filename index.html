@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inai | Bespoke Luxury Perfumery</title>
+    <meta name="description" content="Discover your signature scent through AI-powered Scent DNA or create your own bespoke fragrance in the Inai Atelier.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="mist-container">
+            <div class="mist"></div>
+            <div class="mist mist-2"></div>
+        </div>
+        <div class="splash-logo">INAI</div>
+        <div class="splash-tagline">Define Your Essence</div>
+        <div class="scent-particles"></div>
+    </div>
+
+    <nav class="glass top-nav">
+        <div class="logo">INAI</div>
+        <div class="main-nav-links">
+            <a href="#home" class="nav-item active" data-screen="home" title="Home">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                <span>Home</span>
+            </a>
+            <a href="#collection" class="nav-item" data-screen="collection" title="Explore Collections">
+                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                <span>Collection</span>
+            </a>
+            <a href="#create" class="nav-item create-btn" data-screen="create" title="Bespoke Atelier">
+                <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+                <span>Create</span>
+            </a>
+            <a href="#profile" class="nav-item" data-screen="profile" title="Your Presence">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>Profile</span>
+            </a>
+            <a href="#cart" class="nav-item" data-screen="cart" title="Personal Vault">
+                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span>Cart</span>
+            </a>
+            <a href="#settings" class="nav-item" data-screen="settings" title="Aura Configuration">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span>Settings</span>
+            </a>
+        </div>
+        <div class="nav-actions">
+            <svg viewBox="0 0 24 24" id="theme-toggle-nav" title="Toggle Theme" style="cursor: pointer;"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+            <svg viewBox="0 0 24 24" id="search-trigger"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg viewBox="0 0 24 24" id="notifications-trigger"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        </div>
+    </nav>
+
+    <div id="app-container">
+        <main id="screens">
+        <!-- Home Screen -->
+        <section id="home" class="screen active">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Beyond Scent, <br><span style="color: var(--accent-lavender);">A Soul Signature.</span></h1>
+                    <p>Welcome to INAI. We combine the ancient art of perfumery with modern AI to bottle your essence.</p>
+                    <div class="hero-btns">
+                        <button class="cta-btn explore-btn" onclick="switchScreen('collection')">Explore Fragrances</button>
+                        <button class="secondary-btn" onclick="launchQuiz()">Start Scent Discovery</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <img src="images/hero.png" alt="Exquisite Inai Perfume Bottle">
+                </div>
+            </section>
+
+            <!-- 1. Scent Discovery Mini-Quiz (Teaser) -->
+            <section class="home-section glass-section">
+                <div class="section-content">
+                    <span class="tag">Interactive</span>
+                    <h2>Find Your Perfect Match</h2>
+                    <div id="home-quiz-container" class="mood-grid">
+                        <div class="intro-card" style="grid-column: 1 / -1; margin-bottom: 2rem;">
+                            <p>Discover the notes that resonate with your current vibration in 3 simple steps.</p>
+                            <button class="cta-btn" onclick="launchQuiz()" style="margin-top: 1rem;">Launch Discovery Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Fragrance Wheel Explorer -->
+            <section class="home-section">
+                <div class="section-header">
+                    <h2>Fragrance Wheel Explorer</h2>
+                    <p class="subtitle">Click a family to unveil its aromatic secrets.</p>
+                </div>
+                <div class="wheel-container glass">
+                    <div class="wheel-nav">
+                        <button class="wheel-node" onclick="exploreFamily('Floral')">Floral</button>
+                        <button class="wheel-node" onclick="exploreFamily('Fresh')">Fresh</button>
+                        <button class="wheel-node" onclick="exploreFamily('Woody')">Woody</button>
+                        <button class="wheel-node" onclick="exploreFamily('Spicy')">Spicy</button>
+                        <button class="wheel-node" onclick="exploreFamily('Dark')">Dark</button>
+                    </div>
+                    <div id="wheel-explorer-display" class="wheel-display">
+                        <p class="empty-msg">Select a fragrance family to begin exploration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Ingredient Spotlight -->
+            <section class="home-section glass-section">
+                <div class="spotlight-card">
+                    <div class="spotlight-img" style="background: url('https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
+                    <div class="spotlight-content">
+                        <span class="tag">Ingredient Spotlight</span>
+                        <h3>Jasmine</h3>
+                        <p><strong>Type:</strong> Floral • <strong>Mood:</strong> Romantic and Elegant</p>
+                        <p>A nocturnal bloom that captures the essence of moonlight. Used in our most delicate compositions.</p>
+                        <p class="featured-in">Used in: <em>Velvet Bloom, Moonlit Jasmine</em></p>
+                        <button class="secondary-btn" style="font-size: 1.1rem; padding: 1.2rem 3rem;" onclick="filterCollectionByNote('Floral')">Explore Floral Perfumes</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collections (Existing) -->
+            <section class="home-collections">
+                <div class="horizontal-scroll-section">
+                    <h3>New Arrivals</h3>
+                    <div class="h-scroll" id="new-arrivals-scroll"></div>
+                </div>
+                
+                <!-- 4. Trending Notes -->
+                <div class="horizontal-scroll-section glass-accent">
+                    <h3>Trending Notes</h3>
+                    <div class="notes-cloud">
+                        <button class="note-pill" onclick="renderCollections('Spicy')">Saffron</button>
+                        <button class="note-pill" onclick="renderCollections('Woody')">Oud</button>
+                        <button class="note-pill" onclick="renderCollections('Floral')">Rose</button>
+                        <button class="note-pill" onclick="renderCollections('Woody')">Vetiver</button>
+                        <button class="note-pill" onclick="renderCollections('Floral')">Vanilla</button>
+                    </div>
+                </div>
+
+                <div class="horizontal-scroll-section">
+                    <h3>Trending Perfumes</h3>
+                    <div class="h-scroll" id="trending-scroll"></div>
+                </div>
+
+                <!-- 5. Fragrance of the Day -->
+                <div class="home-section daily-focus glass">
+                    <div class="daily-img" style="background: url('images/nocturnal_silk.png') center/cover;"></div>
+                    <div class="daily-details">
+                        <span class="tag">Fragrance of the Day</span>
+                        <h2>Nocturnal Silk</h2>
+                        <p>A mysterious dance of blackened silk and ancient oud, designed for those who thrive in the twilight hours.</p>
+                        <div class="note-pyramid" style="margin: 1rem 0;">
+                            <span><strong>Top:</strong> Black Plum</span> • 
+                            <span><strong>Heart:</strong> Black Orchid</span> • 
+                            <span><strong>Base:</strong> Dark Woods</span>
+                        </div>
+                        <button class="cta-btn" onclick="openProductDetail('p1')">View Essence</button>
+                    </div>
+                </div>
+
+                <div class="horizontal-scroll-section">
+                    <h3>Seasonal Recommendations</h3>
+                    <div class="h-scroll" id="seasonal-scroll"></div>
+                </div>
+            </section>
+
+            <!-- 6. Scent Mood Cards -->
+            <section class="home-section">
+                <div class="section-header">
+                    <h2>Shop by Mood</h2>
+                </div>
+                <div class="mood-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Fresh')">
+                        <span class="mood-icon">🌊</span>
+                        <h4>Fresh</h4>
+                        <p>Crisper than a morning breeze.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Romantic')">
+                        <span class="mood-icon">🌸</span>
+                        <h4>Romantic</h4>
+                        <p>Soft whispers of petals.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Bold')">
+                        <span class="mood-icon">🌑</span>
+                        <h4>Bold</h4>
+                        <p>Unapologetically mysterious.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Calm')">
+                        <span class="mood-icon">🌲</span>
+                        <h4>Calm</h4>
+                        <p>Grounded in ancient woods.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Energetic')">
+                        <span class="mood-icon">⚡</span>
+                        <h4>Energetic</h4>
+                        <p>Vibrant tones of vitality.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Quick Perfume Finder -->
+            <section class="home-section glass-section finder-section">
+                <div class="finder-container">
+                    <div class="finder-controls">
+                        <h3>Quick Perfume Finder</h3>
+                            <div class="control" style="grid-column: 1 / -1;">
+                                <label>Search Note or Vibe</label>
+                                <input type="text" id="finder-search" class="glass-input" placeholder="e.g. Jasmine, Romantic, Bold..." style="width: 100%; margin-top: 0.5rem;" oninput="quickFindPerfume()">
+                            </div>
+                            <div class="control">
+                                <label>Family</label>
+                                <select id="finder-family" class="glass-select" onchange="quickFindPerfume()">
+                                    <option>All</option>
+                                    <option>Floral</option>
+                                    <option>Woody</option>
+                                    <option>Fresh</option>
+                                    <option>Spicy</option>
+                                    <option>Dark</option>
+                                </select>
+                            </div>
+                            <div class="control">
+                                <label>Intensity</label>
+                                <select id="finder-intensity" class="glass-select" onchange="quickFindPerfume()">
+                                    <option>All</option>
+                                    <option>Mild</option>
+                                    <option>Medium</option>
+                                    <option>Strong</option>
+                                </select>
+                            </div>
+                        <button class="cta-btn" style="margin-top: 2rem; width: 100%;" onclick="quickFindPerfume()">Match My Vibration</button>
+                    </div>
+                    <div id="finder-results" class="finder-results">
+                        <p class="empty-msg">Adjust filters to see instant matches.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Collection Screen (Existing) -->
+        <section id="collection" class="screen">
+            <div class="screen-header">
+                <h2>Collections</h2>
+                <div class="filter-bar">
+                    <button class="filter-chip active">All</button>
+                    <button class="filter-chip">AI Recommended</button>
+                    <button class="filter-chip">Floral</button>
+                    <button class="filter-chip">Woody</button>
+                    <button class="filter-chip">Fresh</button>
+                    <button class="filter-chip">Spicy</button>
+                    <button class="filter-chip">Dark</button>
+                </div>
+            </div>
+            <div class="collection-grid" id="main-collection-grid">
+                <!-- Items injected by JS -->
+            </div>
+        </section>
+
+        <!-- Create Your Own (Atelier 2.0) -->
+        <section id="create" class="screen">
+            <div id="creation-flow">
+                <!-- Step 1 to 5 will be injected here -->
+            </div>
+        </section>
+
+        <!-- Profile Screen -->
+        <section id="profile" class="screen main-profile">
+            <div class="profile-header">
+                <div class="profile-avatar-container" style="position: relative; width: 120px; height: 120px; margin: 0 auto 1.5rem;">
+                    <div class="profile-avatar" id="user-avatar" style="width: 100%; height: 100%; font-size: 3rem; overflow: hidden;">G</div>
+                    <input type="file" id="avatar-upload" style="display: none;" accept="image/*">
+                    <button class="edit-avatar-btn" id="change-avatar-btn" title="Change Avatar" style="position: absolute; bottom: 0; right: 0; background: var(--accent-lavender); color: var(--bg-primary); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: none; cursor: pointer;">+</button>
+                    <button id="remove-avatar-btn" title="Remove Avatar" style="position: absolute; top: 0; right: 0; background: #ff4d4d; color: white; border-radius: 50%; width: 24px; height: 24px; display: none; align-items: center; justify-content: center; font-size: 0.8rem; border: none; cursor: pointer;">&times;</button>
+                </div>
+                <h2>Guest Essence</h2>
+                <p>Curating since March 2026</p>
+                <div class="profile-tag-row"><span class="tag">Standard Member</span></div>
+            </div>
+            
+            <div class="profile-tabs">
+                <button class="nav-item active" data-tab="identity">My Identity</button>
+                <button class="nav-item" data-tab="orders">Order History</button>
+                <button class="nav-item" data-tab="addresses">Saved Addresses</button>
+                <button class="nav-item" data-tab="payments">Payment Methods</button>
+                <button class="nav-item" data-tab="wishlist">Wishlist Vault</button>
+            </div>
+
+            <div class="profile-content glass" id="profile-tab-content">
+                <div class="profile-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3>Personal Details</h3>
+                        <button class="secondary-btn" id="edit-profile-btn" onclick="toggleEditProfile()" style="padding: 4px 12px;">Edit Profile</button>
+                    </div>
+                    <div class="profile-info-grid" id="editable-info">
+                        <div class="info-item"><label>Full Name</label><p data-key="name">Guest User</p></div>
+                        <div class="info-item"><label>Email Address</label><p data-key="email">guest@inai.com</p></div>
+                        <div class="info-item"><label>Phone Number</label><p data-key="phone">+91 98765 43210</p></div>
+                        <div class="info-item"><label>Date of Birth</label><p data-key="birth">Not inscribed</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Screen (Dedicated) -->
+        <section id="cart" class="screen main-cart">
+            <div class="screen-header">
+                <h2>Your Collection</h2>
+                <div class="subtitle">Review your curated essence selections.</div>
+            </div>
+            <div id="cart-list" class="cart-list">
+                <!-- Items injected by JS -->
+            </div>
+            <div class="cart-summary glass">
+                <h3>Order Insight</h3>
+                <div class="luxury-option">
+                    <div class="option-label">
+                        <input type="checkbox" id="gift-wrap">
+                        <label for="gift-wrap">Luxury Gift Ritual & Inscription</label>
+                    </div>
+                    <span class="price-tag">+₹499</span>
+                </div>
+                <div class="summary-details">
+                    <div class="line"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+                    <div class="line muted"><span>Curation Tax</span><span>Calculated later</span></div>
+                    <div class="line muted"><span>Global Passage</span><span>Complementary Over ₹5,000</span></div>
+                    <div class="line total"><span>Total</span><span id="cart-total">₹0</span></div>
+                </div>
+                <button class="cta-btn checkout-btn">Initiate Curation</button>
+            </div>
+        </section>
+
+        <!-- Settings Screen -->
+        <section id="settings" class="screen" style="max-width: 600px; margin: 0 auto; padding-bottom: 4rem;">
+            <div class="screen-header">
+                <h2>Application Settings</h2>
+            </div>
+            <div class="settings-container">
+                <div class="settings-card glass">
+                    <h4 class="settings-title">Regional & Appearance</h4>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>Display Theme</span>
+                            <small>Visual aura of the application</small>
+                        </div>
+                        <div class="switch-btns">
+                            <button class="switch-btn active" id="theme-dark-main">Dark</button>
+                            <button class="switch-btn" id="theme-light-main">Light</button>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>Currency</span>
+                            <small>Global value representation</small>
+                        </div>
+                        <div class="switch-btns">
+                            <button class="switch-btn" data-currency="USD">USD</button>
+                            <button class="switch-btn" data-currency="EUR">EUR</button>
+                            <button class="switch-btn active" data-currency="INR">INR</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-card glass">
+                    <h4 class="settings-title">Privacy & Security</h4>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>Two-Factor Authentication</span>
+                            <small>Protect your essence repository</small>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="2fa-toggle">
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>AI Personalization</span>
+                            <small>Allow learning from your sessions</small>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ai-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>Push Notifications</span>
+                            <small>Updates on orders and creations</small>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="push-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card glass">
+                    <h4 class="settings-title">Support & Account</h4>
+                    <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('contact')">
+                        <span>Help Center</span>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('sustainability')">
+                        <span>Sustainability Policy</span>
+                        <span class="arrow">→</span>
+                    </a>
+                    <div class="setting-item logout">
+                        <span>Sign Out of Inai</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scent-dna" class="dna-teaser-section">
+            <div class="dna-card">
+                <div class="dna-content">
+                    <span class="tag">AI Personalization</span>
+                    <h2>Discover Your Scent DNA</h2>
+                    <p>Our intelligent algorithm analyzes your personality, memories, and sensory preferences to reveal the notes that resonate with your soul.</p>
+                    <button class="cta-btn" onclick="launchQuiz()" style="background: var(--text-primary); color: var(--bg-primary); padding: 1rem 2rem; text-decoration: none; border-radius: 4px; margin-top: 1rem;">Start Scent Discovery</button>
+                    <div class="dna-stats">
+                        <div class="stat"><span>30+</span> Molecular Notes</div>
+                        <div class="stat"><span>10k+</span> Combinations</div>
+                        <div class="stat"><span>100%</span> Unique to You</div>
+                    </div>
+                </div>
+                <div class="dna-visual">
+                    <div class="dna-orb"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Product Detail Screen -->
+        <section id="product-detail" class="screen">
+            <div class="screen-header">
+                <button class="secondary-btn" onclick="switchScreen('collection')" style="margin-bottom: 2rem;">← Back to Collection</button>
+            </div>
+            <div class="detail-container glass">
+                <div class="detail-img-section">
+                    <div id="detail-img" class="main-detail-img"></div>
+                </div>
+                <div class="detail-info-section">
+                    <span class="tag" id="detail-tag">Signature Series</span>
+                    <h1 id="detail-title">Product Name</h1>
+                    <div class="price" id="detail-price">₹0</div>
+                    <p class="description" id="detail-desc">Full description will appear here.</p>
+                    <div class="notes-section">
+                        <h4>Scent Composition</h4>
+                        <div class="pyramid">
+                            <div class="layer"><strong>Top:</strong> <span id="detail-top">...</span></div>
+                            <div class="layer"><strong>Heart:</strong> <span id="detail-heart">...</span></div>
+                            <div class="layer"><strong>Base:</strong> <span id="detail-base">...</span></div>
+                        </div>
+                    </div>
+                    <div class="modal-allergens" style="margin-top: 1.5rem; font-size: 0.85rem; padding: 1rem; background: var(--glass-bg); border-radius: 8px; border: 1px solid var(--border-color);">
+                        <strong>Allergens:</strong> <span id="detail-allergens-list">...</span>
+                    </div>
+                    <button class="cta-btn" id="detail-add-btn" style="width: 100%; margin-top: 2rem;">Add to Collection</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">INAI</div>
+                <p>Crafting sensory experiences that transcend time and space.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Experience</h4>
+                <a href="#scent-dna">Scent DNA</a>
+                <a href="#collections">Collections</a>
+            </div>
+            <div class="footer-links">
+                <h4>House</h4>
+                <a href="javascript:void(0)" class="house-link" data-content="story">Our Story</a>
+                <a href="javascript:void(0)" class="house-link" data-content="process">Process</a>
+                <a href="javascript:void(0)" class="house-link" data-content="sustainability">Sustainability</a>
+            </div>
+            <div class="footer-links">
+                <h4>Fragrance Care Guide</h4>
+                <a href="#shipping" class="house-link" data-content="shipping">Shipping</a>
+                <a href="#returns" class="house-link" data-content="returns">Returns</a>
+                <a href="#contact" class="house-link" data-content="contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 INAI Perfumery. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="drawer-overlay">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h2>Cart</h2>
+                <button class="close-drawer" id="close-cart-drawer">&times;</button>
+            </div>
+            <div class="drawer-content" id="cart-drawer-items">
+                <!-- Cart items will be injected -->
+            </div>
+            <div class="cart-actions">
+                <div class="cart-total-row">
+                    <span>Subtotal</span>
+                    <span id="cart-drawer-total">$0</span>
+                </div>
+                <button class="cta-btn checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Drawer -->
+    <div id="settings-drawer" class="drawer-overlay">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h2>Settings</h2>
+                <button class="close-drawer" id="close-settings-drawer">&times;</button>
+            </div>
+            <div class="drawer-content">
+                <div class="settings-container">
+                    <div class="settings-card glass">
+                        <h4 class="settings-title">Regional & Appearance</h4>
+                        <div class="setting-item">
+                            <div class="setting-label">
+                                <span>Display Theme</span>
+                                <small>Visual aura of the application</small>
+                            </div>
+                            <div class="switch-btns">
+                                <button class="switch-btn active" id="theme-dark-main">Dark</button>
+                                <button class="switch-btn" id="theme-light-main">Light</button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">
+                                <span>Currency</span>
+                                <small>Global value representation</small>
+                            </div>
+                            <div class="switch-btns">
+                                <button class="switch-btn" data-currency="USD">USD</button>
+                                <button class="switch-btn" data-currency="EUR">EUR</button>
+                                <button class="switch-btn active" data-currency="INR">INR</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card glass">
+                        <h4 class="settings-title">Privacy & Security</h4>
+                        <div class="setting-item">
+                            <div class="setting-label">
+                                <span>Two-Factor Authentication</span>
+                                <small>Protect your essence repository</small>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="2fa-toggle">
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">
+                                <span>AI Personalization</span>
+                                <small>Allow learning from your sessions</small>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="ai-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">
+                                <span>Push Notifications</span>
+                                <small>Updates on orders and creations</small>
+                            </div>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="push-toggle" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card glass">
+                        <h4 class="settings-title">Support & Account</h4>
+                        <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('contact')">
+                            <span>Help Center</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('sustainability')">
+                            <span>Sustainability Policy</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        <div class="setting-item logout">
+                            <span>Sign Out of Inai</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Overlays & Modals -->
+    <!-- Scent DNA Quiz Overlay -->
+    <div id="quiz-overlay" class="quiz-overlay">
+        <div class="quiz-container glass">
+            <button class="close-quiz" id="close-quiz-main">&times;</button>
+            <div class="quiz-progress-bar"><div class="progress"></div></div>
+            <div id="quiz-step-container"></div>
+            <div class="quiz-nav">
+                <button id="prev-step" class="secondary-btn" style="display: none;">Back</button>
+                <button id="next-step" class="cta-btn">Next Step</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="quiz-overlay">
+        <div class="quiz-container glass">
+            <button class="close-search close-quiz">&times;</button>
+            <span class="tag">Search</span>
+            <h2>Find Your Essence</h2>
+            <div class="search-input-wrapper">
+                <input type="text" id="site-search" placeholder="Search by notes, mood, or collection..." class="glass">
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal-content glass">
+            <button class="close-quiz" id="close-product-modal">&times;</button>
+            <div class="modal-img-container">
+                <div id="modal-img" class="modal-img"></div>
+            </div>
+            <div class="modal-details">
+                <span class="tag" id="modal-tag">Signature Collection</span>
+                <h2 id="modal-title">Product Name</h2>
+                <div class="notes" id="modal-notes">Top • Heart • Base</div>
+                <p class="description" id="modal-desc"></p>
+                <div class="modal-allergens" id="modal-allergens">
+                    <strong>Allergens:</strong> <span id="allergens-list">Linalool, Limonene, Geraniol, Citral.</span>
+                </div>
+                <div class="price" id="modal-price" style="font-size: 2rem; margin: 2rem 0;">$180</div>
+                <button class="cta-btn" id="modal-add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creative Atelier Overlays -->
+    <!-- Molecule Design Overlay -->
+    <div id="molecule-overlay" class="quiz-overlay" style="display: none;">
+        <div class="quiz-container glass" style="max-width: 600px;">
+            <button class="close-quiz" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
+            <span class="tag">Molecular Design</span>
+            <h2>Sculpt Your Scent Elements</h2>
+            <div class="molecule-editor">
+                <div class="molecule-visualizer" id="molecule-visualizer" style="height: 200px; display: flex; align-items: center; justify-content: center; font-size: 5rem; margin: 1rem 0; color: var(--accent-lavender); transition: transform 0.3s, filter 0.3s; text-shadow: 0 0 20px var(--accent-lavender);">⌬</div>
+                <div class="slider-group" style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;"><label>Sweetness</label><span id="mol-s-val">50%</span></div>
+                    <input type="range" id="mol-sweet" min="0" max="100" value="50" style="width:100%" oninput="updateMoleculeView()">
+                </div>
+                <div class="slider-group" style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;"><label>Woodiness</label><span id="mol-w-val">30%</span></div>
+                    <input type="range" id="mol-wood" min="0" max="100" value="30" style="width:100%" oninput="updateMoleculeView()">
+                </div>
+                <div class="slider-group" style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between;"><label>Freshness</label><span id="mol-f-val">70%</span></div>
+                    <input type="range" id="mol-fresh" min="0" max="100" value="70" style="width:100%" oninput="updateMoleculeView()">
+                </div>
+            </div>
+            <button class="cta-btn" style="width: 100%; margin-top: 1rem;" onclick="showToast('Molecule Signature Saved!'); this.parentElement.parentElement.style.display='none'">Synthesize Molecule</button>
+        </div>
+    </div>
+
+    <!-- Visual Scenting Overlay -->
+    <div id="visual-overlay" class="quiz-overlay" style="display: none;">
+        <div class="quiz-container glass" style="max-width: 600px; text-align: center;">
+            <button class="close-quiz" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
+            <span class="tag">Visual Scenting</span>
+            <h2>Synesthetic Canvas</h2>
+            <p style="margin-bottom: 2rem;">Select a profile element to see its visual manifestation.</p>
+            <div class="note-selector" style="justify-content: center; margin-bottom: 2rem;" id="visual-toggles">
+                <button class="note-chip active" onclick="updateVisualScent('floral', this)">Floral Aura</button>
+                <button class="note-chip" onclick="updateVisualScent('woody', this)">Deep Wood</button>
+                <button class="note-chip" onclick="updateVisualScent('fresh', this)">Ocean Mist</button>
+            </div>
+            <div id="visualizer-display" style="width: 250px; height: 250px; margin: 0 auto; border-radius: 50%; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); transition: all 1s ease; box-shadow: 0 0 50px rgba(255,154,158,0.5);"></div>
+        </div>
+    </div>
+
+    <!-- Scent Poetry Overlay -->
+    <div id="poetry-overlay" class="quiz-overlay" style="display: none;">
+        <div class="quiz-container glass" style="max-width: 600px; text-align: center;">
+            <button class="close-quiz" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
+            <span class="tag">Scent Poetry</span>
+            <h2>Ode to Fragrance</h2>
+            <div style="margin: 2rem 0;">
+                <select id="poetry-scent-select" class="glass" style="padding: 0.8rem 1rem; width: 100%; border-radius: 8px; margin-bottom: 1.5rem; color: var(--text-primary); background: transparent; border: 1px solid var(--border-color);">
+                    <option value="Nocturnal Silk" style="color: black;">Nocturnal Silk</option>
+                    <option value="Ethereal Dew" style="color: black;">Ethereal Dew</option>
+                    <option value="Mitti (Rain)" style="color: black;">Mitti (Rain)</option>
+                    <option value="Royal Spice" style="color: black;">Royal Spice</option>
+                </select>
+                <button class="cta-btn" onclick="generatePoetry()">Generate Stanza</button>
+            </div>
+            <div id="poetry-display" style="font-style: italic; font-size: 1.2rem; line-height: 1.8; margin-top: 2rem; white-space: pre-wrap; min-height: 150px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; border-radius: 12px; background: rgba(0,0,0,0.2);">
+                Select an essence to reveal its poetic soul.
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
