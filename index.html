@@ -116,10 +116,26 @@
                         <p><strong>Type:</strong> Floral • <strong>Mood:</strong> Romantic and Elegant</p>
                         <p>A nocturnal bloom that captures the essence of moonlight. Used in our most delicate compositions.</p>
                         <p class="featured-in">Used in: <em>Velvet Bloom, Moonlit Jasmine</em></p>
-                        <button class="secondary-btn" style="font-size: 1.1rem; padding: 1.2rem 3rem;" onclick="filterCollectionByNote('Floral')">Explore Floral Perfumes</button>
+                        <button class="secondary-btn" style="font-size: 1.1rem; padding: 1.2rem 3rem;" onclick="filterCollectionByNote('Jasmine')">Explore Jasmine Perfumes</button>
                     </div>
                 </div>
             </section>
+
+            <!-- 5. Fragrance of the Day (Moved) -->
+            <div class="home-section daily-focus glass">
+                <div class="daily-img" style="background: url('images/nocturnal_silk.png') center/cover;"></div>
+                <div class="daily-details">
+                    <span class="tag">Fragrance of the Day</span>
+                    <h2>Nocturnal Silk</h2>
+                    <p>A mysterious dance of blackened silk and ancient oud, designed for those who thrive in the twilight hours.</p>
+                    <div class="note-pyramid" style="margin: 1rem 0;">
+                        <span><strong>Top:</strong> Black Plum</span> • 
+                        <span><strong>Heart:</strong> Black Orchid</span> • 
+                        <span><strong>Base:</strong> Dark Woods</span>
+                    </div>
+                    <button class="cta-btn" onclick="openProductDetail('p1')">View Essence</button>
+                </div>
+            </div>
 
             <!-- Collections (Existing) -->
             <section class="home-collections">
@@ -128,15 +144,14 @@
                     <div class="h-scroll" id="new-arrivals-scroll"></div>
                 </div>
                 
-                <!-- 4. Trending Notes -->
                 <div class="horizontal-scroll-section glass-accent">
                     <h3>Trending Notes</h3>
                     <div class="notes-cloud">
-                        <button class="note-pill" onclick="renderCollections('Spicy')">Saffron</button>
-                        <button class="note-pill" onclick="renderCollections('Woody')">Oud</button>
-                        <button class="note-pill" onclick="renderCollections('Floral')">Rose</button>
-                        <button class="note-pill" onclick="renderCollections('Woody')">Vetiver</button>
-                        <button class="note-pill" onclick="renderCollections('Floral')">Vanilla</button>
+                        <button class="note-pill" onclick="filterCollectionByNote('Spicy')">Saffron</button>
+                        <button class="note-pill" onclick="filterCollectionByNote('Woody')">Oud</button>
+                        <button class="note-pill" onclick="filterCollectionByNote('Floral')">Rose</button>
+                        <button class="note-pill" onclick="filterCollectionByNote('Woody')">Vetiver</button>
+                        <button class="note-pill" onclick="filterCollectionByNote('Floral')">Vanilla</button>
                     </div>
                 </div>
 
@@ -145,25 +160,50 @@
                     <div class="h-scroll" id="trending-scroll"></div>
                 </div>
 
-                <!-- 5. Fragrance of the Day -->
-                <div class="home-section daily-focus glass">
-                    <div class="daily-img" style="background: url('images/nocturnal_silk.png') center/cover;"></div>
-                    <div class="daily-details">
-                        <span class="tag">Fragrance of the Day</span>
-                        <h2>Nocturnal Silk</h2>
-                        <p>A mysterious dance of blackened silk and ancient oud, designed for those who thrive in the twilight hours.</p>
-                        <div class="note-pyramid" style="margin: 1rem 0;">
-                            <span><strong>Top:</strong> Black Plum</span> • 
-                            <span><strong>Heart:</strong> Black Orchid</span> • 
-                            <span><strong>Base:</strong> Dark Woods</span>
-                        </div>
-                        <button class="cta-btn" onclick="openProductDetail('p1')">View Essence</button>
-                    </div>
-                </div>
-
                 <div class="horizontal-scroll-section">
                     <h3>Seasonal Recommendations</h3>
                     <div class="h-scroll" id="seasonal-scroll"></div>
+                </div>
+            </section>
+
+            <!-- Advanced Scent Experience Section -->
+            <section class="home-section laboratory-section glass-section">
+                <div class="section-header">
+                    <span class="tag">Advanced Scent Experience</span>
+                    <h2>Deeper Fragrance Intelligence</h2>
+                    <p class="subtitle">Explore deeper insights and personalized fragrance intelligence.</p>
+                    <p style="margin-top: 1rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">Discover insights, compare fragrances, and understand what suits you best.</p>
+                </div>
+                <div class="lab-grid experience-grid">
+                    <div class="lab-card glass experience-card" onclick="openScentDNA()">
+                        <div class="lab-icon">🧬</div>
+                        <h3>Your Scent DNA</h3>
+                        <p>Analyze your preferences and build a unique scent personality profile.</p>
+                        <button class="mini-add">Build Profile</button>
+                    </div>
+                    <div class="lab-card glass experience-card" onclick="openCompareScents()">
+                        <div class="lab-icon">⚖️</div>
+                        <h3>Compare Scents</h3>
+                        <p>Side-by-side comparison of notes, longevity, and intensity to help you decide.</p>
+                        <button class="mini-add">Compare Now</button>
+                    </div>
+                    <div class="lab-card glass experience-card" onclick="openScentStory()">
+                        <div class="lab-icon">📖</div>
+                        <h3>Your Scent Story</h3>
+                        <p>Generate luxury descriptions and poetic narratives for your favorite essences.</p>
+                        <button class="mini-add">Read Story</button>
+                    </div>
+                </div>
+
+                <!-- Trending Scent Insights -->
+                <div class="trending-insights-container glass" style="margin-top: 4rem; padding: 3rem;">
+                    <div class="section-header" style="margin-bottom: 2rem;">
+                        <span class="tag">Market Pulse</span>
+                        <h3>Trending Scent Insights</h3>
+                    </div>
+                    <div id="trending-insights-content" class="insights-grid">
+                        <!-- Injected by JS -->
+                    </div>
                 </div>
             </section>
 
@@ -197,6 +237,56 @@
                         <span class="mood-icon">⚡</span>
                         <h4>Energetic</h4>
                         <p>Vibrant tones of vitality.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Mysterious')">
+                        <span class="mood-icon">🎭</span>
+                        <h4>Mysterious</h4>
+                        <p>Shadowed depths and untold secrets.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Playful')">
+                        <span class="mood-icon">🎈</span>
+                        <h4>Playful</h4>
+                        <p>A spontaneous burst of joy.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Dreamy')">
+                        <span class="mood-icon">☁️</span>
+                        <h4>Dreamy</h4>
+                        <p>Floating through clouds of soft musk.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Zen')">
+                        <span class="mood-icon">🌿</span>
+                        <h4>Zen</h4>
+                        <p>Perfectly balanced and still.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Sensual')">
+                        <span class="mood-icon">🍷</span>
+                        <h4>Sensual</h4>
+                        <p>An intimate and heady embrace.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Vintage')">
+                        <span class="mood-icon">🕰️</span>
+                        <h4>Vintage</h4>
+                        <p>Timeless elegance from another era.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Exotic')">
+                        <span class="mood-icon">🌴</span>
+                        <h4>Exotic</h4>
+                        <p>Faraway lands and rare spices.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Rebellious')">
+                        <span class="mood-icon">🔥</span>
+                        <h4>Rebellious</h4>
+                        <p>Flouting conventions with fire.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Cozy')">
+                        <span class="mood-icon">☕</span>
+                        <h4>Cozy</h4>
+                        <p>Warm spices and comforting vanilla.</p>
+                    </div>
+                    <div class="mood-card glass" onclick="filterCollectionByNote('Vibrant')">
+                        <span class="mood-icon">✨</span>
+                        <h4>Vibrant</h4>
+                        <p>Sparkling, energetic, and alive.</p>
                     </div>
                 </div>
             </section>
@@ -462,6 +552,18 @@
                 </div>
             </div>
         </section>
+
+        <!-- Information / House Screen -->
+        <section id="info-screen" class="screen" style="max-width: 800px; margin: 0 auto; padding-bottom: 4rem;">
+            <div class="screen-header" style="margin-bottom: 2rem;">
+                <button class="secondary-btn" onclick="switchScreen('home')" style="margin-bottom: 1.5rem; padding: 0.6rem 1.5rem;">← Back to Home</button>
+                <h2 id="info-title">Information</h2>
+                <div class="subtitle" id="info-subtitle" style="color: var(--text-secondary); margin-top: 0.5rem;">Details about our house</div>
+            </div>
+            <div id="info-body" class="glass" style="padding: 2.5rem; border-radius: 16px; margin-top: 1.5rem;">
+                <!-- Content dynamically injected by JS -->
+            </div>
+        </section>
     </main>
 
     <footer class="glass">
@@ -530,8 +632,8 @@
                                 <small>Visual aura of the application</small>
                             </div>
                             <div class="switch-btns">
-                                <button class="switch-btn active" id="theme-dark-main">Dark</button>
-                                <button class="switch-btn" id="theme-light-main">Light</button>
+                                <button class="switch-btn active" id="theme-dark-drawer">Dark</button>
+                                <button class="switch-btn" id="theme-light-drawer">Light</button>
                             </div>
                         </div>
                         <div class="setting-item">
@@ -555,7 +657,7 @@
                                 <small>Protect your essence repository</small>
                             </div>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="2fa-toggle">
+                                <input type="checkbox" id="2fa-toggle-drawer">
                                 <span class="toggle-slider"></span>
                             </div>
                         </div>
@@ -565,7 +667,7 @@
                                 <small>Allow learning from your sessions</small>
                             </div>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="ai-toggle" checked>
+                                <input type="checkbox" id="ai-toggle-drawer" checked>
                                 <span class="toggle-slider"></span>
                             </div>
                         </div>
@@ -575,7 +677,7 @@
                                 <small>Updates on orders and creations</small>
                             </div>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="push-toggle" checked>
+                                <input type="checkbox" id="push-toggle-drawer" checked>
                                 <span class="toggle-slider"></span>
                             </div>
                         </div>
@@ -649,45 +751,50 @@
         </div>
     </div>
 
-    <!-- Creative Atelier Overlays -->
-    <!-- Molecule Design Overlay -->
-    <div id="molecule-overlay" class="quiz-overlay" style="display: none;">
+    <!-- Advanced Experience Overlays -->
+    <!-- Scent DNA Overlay -->
+    <div id="dna-profile-overlay" class="quiz-overlay" style="display: none;">
         <div class="quiz-container glass" style="max-width: 600px;">
-            <button class="close-quiz" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
-            <span class="tag">Molecular Design</span>
-            <h2>Sculpt Your Scent Elements</h2>
-            <div class="molecule-editor">
-                <div class="molecule-visualizer" id="molecule-visualizer" style="height: 200px; display: flex; align-items: center; justify-content: center; font-size: 5rem; margin: 1rem 0; color: var(--accent-lavender); transition: transform 0.3s, filter 0.3s; text-shadow: 0 0 20px var(--accent-lavender);">⌬</div>
-                <div class="slider-group" style="margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between;"><label>Sweetness</label><span id="mol-s-val">50%</span></div>
-                    <input type="range" id="mol-sweet" min="0" max="100" value="50" style="width:100%" oninput="updateMoleculeView()">
-                </div>
-                <div class="slider-group" style="margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between;"><label>Woodiness</label><span id="mol-w-val">30%</span></div>
-                    <input type="range" id="mol-wood" min="0" max="100" value="30" style="width:100%" oninput="updateMoleculeView()">
-                </div>
-                <div class="slider-group" style="margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between;"><label>Freshness</label><span id="mol-f-val">70%</span></div>
-                    <input type="range" id="mol-fresh" min="0" max="100" value="70" style="width:100%" oninput="updateMoleculeView()">
-                </div>
+            <button class="close-quiz" onclick="closeOverlay(document.getElementById('dna-profile-overlay'))">&times;</button>
+            <div id="dna-quiz-container">
+                <!-- Quiz or Profile result injected here -->
             </div>
-            <button class="cta-btn" style="width: 100%; margin-top: 1rem;" onclick="showToast('Molecule Signature Saved!'); this.parentElement.parentElement.style.display='none'">Synthesize Molecule</button>
         </div>
     </div>
 
-    <!-- Visual Scenting Overlay -->
-    <div id="visual-overlay" class="quiz-overlay" style="display: none;">
-        <div class="quiz-container glass" style="max-width: 600px; text-align: center;">
-            <button class="close-quiz" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
-            <span class="tag">Visual Scenting</span>
-            <h2>Synesthetic Canvas</h2>
-            <p style="margin-bottom: 2rem;">Select a profile element to see its visual manifestation.</p>
-            <div class="note-selector" style="justify-content: center; margin-bottom: 2rem;" id="visual-toggles">
-                <button class="note-chip active" onclick="updateVisualScent('floral', this)">Floral Aura</button>
-                <button class="note-chip" onclick="updateVisualScent('woody', this)">Deep Wood</button>
-                <button class="note-chip" onclick="updateVisualScent('fresh', this)">Ocean Mist</button>
+    <!-- Comparison Overlay -->
+    <div id="comparison-overlay" class="quiz-overlay" style="display: none;">
+        <div class="quiz-container glass" style="max-width: 900px; width: 95%;">
+            <button class="close-quiz" onclick="closeOverlay(document.getElementById('comparison-overlay'))">&times;</button>
+            <span class="tag">Fragrance Comparison</span>
+            <h2>Select Essences to Compare</h2>
+            <div id="comparison-selector" class="comparison-selector" style="margin: 2rem 0;">
+                <!-- Product checkboxes injected here -->
             </div>
-            <div id="visualizer-display" style="width: 250px; height: 250px; margin: 0 auto; border-radius: 50%; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); transition: all 1s ease; box-shadow: 0 0 50px rgba(255,154,158,0.5);"></div>
+            <div id="comparison-table-container" class="comparison-scroll">
+                <!-- Comparison table injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scent Story Overlay -->
+    <div id="scent-story-overlay" class="quiz-overlay" style="display: none;">
+        <div class="quiz-container glass" style="max-width: 650px;">
+            <button class="close-quiz" onclick="closeOverlay(document.getElementById('scent-story-overlay'))">&times;</button>
+            <span class="tag">Scent Story</span>
+            <h2>Invoke Your Narrative</h2>
+            <div style="margin: 2rem 0;">
+                <label>Select an Essence</label>
+                <select id="story-scent-select" class="glass-select" style="width: 100%; margin-top: 0.5rem;"></select>
+                <button class="cta-btn" style="width: 100%; margin-top: 1.5rem;" onclick="generateScentStory()">Compose Narrative</button>
+            </div>
+            <div id="story-display" class="story-display glass" style="padding: 2rem; border-radius: 12px; margin-top: 1rem; min-height: 200px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <p class="empty-msg">Select a fragrance to unveil its atmospheric soul.</p>
+            </div>
+            <div id="story-actions" style="display: none; margin-top: 1.5rem; gap: 1rem; justify-content: center;">
+                <button class="secondary-btn" id="copy-story-btn">Copy Story</button>
+                <button class="secondary-btn" id="save-story-btn">Save to Profile</button>
+            </div>
         </div>
     </div>
 
@@ -715,6 +822,6 @@
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="scripts/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
