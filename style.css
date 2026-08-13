@@ -1,827 +1,3145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inai | Bespoke Luxury Perfumery</title>
-    <meta name="description" content="Discover your signature scent through AI-powered Scent DNA or create your own bespoke fragrance in the Inai Atelier.">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Splash Screen -->
-    <div id="splash-screen" class="splash-screen">
-        <div class="mist-container">
-            <div class="mist"></div>
-            <div class="mist mist-2"></div>
-        </div>
-        <div class="splash-logo">INAI</div>
-        <div class="splash-tagline">Define Your Essence</div>
-        <div class="scent-particles"></div>
-    </div>
+:root {
+    --bg-primary: #0a0a0c;
+    --bg-secondary: #141418;
+    --card-bg: rgba(20, 20, 24, 0.7);
+    --accent-lavender: #b39cd0;
+    --accent-peach: #e5b299;
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --soft-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --drawer-width: 100%; /* Mobile first */
+    --nav-height: 70px;
+    --overlay-bg: rgba(10, 10, 12, 0.95);
+}
 
-    <nav class="glass top-nav">
-        <div class="logo">INAI</div>
-        <div class="main-nav-links">
-            <a href="#home" class="nav-item active" data-screen="home" title="Home">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                <span>Home</span>
-            </a>
-            <a href="#collection" class="nav-item" data-screen="collection" title="Explore Collections">
-                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                <span>Collection</span>
-            </a>
-            <a href="#create" class="nav-item create-btn" data-screen="create" title="Bespoke Atelier">
-                <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="12" y1="3" x2="12" y2="21"></line></svg>
-                <span>Create</span>
-            </a>
-            <a href="#profile" class="nav-item" data-screen="profile" title="Your Presence">
-                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span>Profile</span>
-            </a>
-            <a href="#cart" class="nav-item" data-screen="cart" title="Personal Vault">
-                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                <span>Cart</span>
-            </a>
-            <a href="#settings" class="nav-item" data-screen="settings" title="Aura Configuration">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                <span>Settings</span>
-            </a>
-        </div>
-        <div class="nav-actions">
-            <svg viewBox="0 0 24 24" id="theme-toggle-nav" title="Toggle Theme" style="cursor: pointer;"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
-            <svg viewBox="0 0 24 24" id="search-trigger"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <svg viewBox="0 0 24 24" id="notifications-trigger"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-        </div>
-    </nav>
+body.light-mode {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f7;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-primary: #000000;
+    --text-secondary: #444444;
+    --accent-lavender: #8b6fa5;
+    --accent-peach: #c98c71;
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --soft-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+    --overlay-bg: rgba(255, 255, 255, 0.98);
+}
 
-    <div id="app-container">
-        <main id="screens">
-        <!-- Home Screen -->
-        <section id="home" class="screen active">
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>Beyond Scent, <br><span style="color: var(--accent-lavender);">A Soul Signature.</span></h1>
-                    <p>Welcome to INAI. We combine the ancient art of perfumery with modern AI to bottle your essence.</p>
-                    <div class="hero-btns">
-                        <button class="cta-btn explore-btn" onclick="switchScreen('collection')">Explore Fragrances</button>
-                        <button class="secondary-btn" onclick="launchQuiz()">Start Scent Discovery</button>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <img src="images/hero.png" alt="Exquisite Inai Perfume Bottle">
-                </div>
-            </section>
+body.high-contrast {
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --card-bg: #111111;
+    --text-primary: #ffffff;
+    --text-secondary: #bbbbbb;
+    --accent-lavender: #ffffff;
+    --accent-peach: #ffffff;
+    --glass-border: #ffffff;
+}
 
-            <!-- 1. Scent Discovery Mini-Quiz (Teaser) -->
-            <section class="home-section glass-section">
-                <div class="section-content">
-                    <span class="tag">Interactive</span>
-                    <h2>Find Your Perfect Match</h2>
-                    <div id="home-quiz-container" class="mood-grid">
-                        <div class="intro-card" style="grid-column: 1 / -1; margin-bottom: 2rem;">
-                            <p>Discover the notes that resonate with your current vibration in 3 simple steps.</p>
-                            <button class="cta-btn" onclick="launchQuiz()" style="margin-top: 1rem;">Launch Discovery Quiz</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+body.light-mode.high-contrast {
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --card-bg: #eeeeee;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent-lavender: #000000;
+    --accent-peach: #000000;
+    --glass-border: #000000;
+}
 
-            <!-- 2. Fragrance Wheel Explorer -->
-            <section class="home-section">
-                <div class="section-header">
-                    <h2>Fragrance Wheel Explorer</h2>
-                    <p class="subtitle">Click a family to unveil its aromatic secrets.</p>
-                </div>
-                <div class="wheel-container glass">
-                    <div class="wheel-nav">
-                        <button class="wheel-node" onclick="exploreFamily('Floral')">Floral</button>
-                        <button class="wheel-node" onclick="exploreFamily('Fresh')">Fresh</button>
-                        <button class="wheel-node" onclick="exploreFamily('Woody')">Woody</button>
-                        <button class="wheel-node" onclick="exploreFamily('Spicy')">Spicy</button>
-                        <button class="wheel-node" onclick="exploreFamily('Dark')">Dark</button>
-                    </div>
-                    <div id="wheel-explorer-display" class="wheel-display">
-                        <p class="empty-msg">Select a fragrance family to begin exploration.</p>
-                    </div>
-                </div>
-            </section>
+.switch-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
+}
 
-            <!-- 3. Ingredient Spotlight -->
-            <section class="home-section glass-section">
-                <div class="spotlight-card">
-                    <div class="spotlight-img" style="background: url('https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80') center/cover;"></div>
-                    <div class="spotlight-content">
-                        <span class="tag">Ingredient Spotlight</span>
-                        <h3>Jasmine</h3>
-                        <p><strong>Type:</strong> Floral • <strong>Mood:</strong> Romantic and Elegant</p>
-                        <p>A nocturnal bloom that captures the essence of moonlight. Used in our most delicate compositions.</p>
-                        <p class="featured-in">Used in: <em>Velvet Bloom, Moonlit Jasmine</em></p>
-                        <button class="secondary-btn" style="font-size: 1.1rem; padding: 1.2rem 3rem;" onclick="filterCollectionByNote('Jasmine')">Explore Jasmine Perfumes</button>
-                    </div>
-                </div>
-            </section>
+.switch-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
 
-            <!-- 5. Fragrance of the Day (Moved) -->
-            <div class="home-section daily-focus glass">
-                <div class="daily-img" style="background: url('images/nocturnal_silk.png') center/cover;"></div>
-                <div class="daily-details">
-                    <span class="tag">Fragrance of the Day</span>
-                    <h2>Nocturnal Silk</h2>
-                    <p>A mysterious dance of blackened silk and ancient oud, designed for those who thrive in the twilight hours.</p>
-                    <div class="note-pyramid" style="margin: 1rem 0;">
-                        <span><strong>Top:</strong> Black Plum</span> • 
-                        <span><strong>Heart:</strong> Black Orchid</span> • 
-                        <span><strong>Base:</strong> Dark Woods</span>
-                    </div>
-                    <button class="cta-btn" onclick="openProductDetail('p1')">View Essence</button>
-                </div>
-            </div>
+.switch-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+}
 
-            <!-- Collections (Existing) -->
-            <section class="home-collections">
-                <div class="horizontal-scroll-section">
-                    <h3>New Arrivals</h3>
-                    <div class="h-scroll" id="new-arrivals-scroll"></div>
-                </div>
-                
-                <div class="horizontal-scroll-section glass-accent">
-                    <h3>Trending Notes</h3>
-                    <div class="notes-cloud">
-                        <button class="note-pill" onclick="filterCollectionByNote('Spicy')">Saffron</button>
-                        <button class="note-pill" onclick="filterCollectionByNote('Woody')">Oud</button>
-                        <button class="note-pill" onclick="filterCollectionByNote('Floral')">Rose</button>
-                        <button class="note-pill" onclick="filterCollectionByNote('Woody')">Vetiver</button>
-                        <button class="note-pill" onclick="filterCollectionByNote('Floral')">Vanilla</button>
-                    </div>
-                </div>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
 
-                <div class="horizontal-scroll-section">
-                    <h3>Trending Perfumes</h3>
-                    <div class="h-scroll" id="trending-scroll"></div>
-                </div>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
 
-                <div class="horizontal-scroll-section">
-                    <h3>Seasonal Recommendations</h3>
-                    <div class="h-scroll" id="seasonal-scroll"></div>
-                </div>
-            </section>
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-            <!-- Advanced Scent Experience Section -->
-            <section class="home-section laboratory-section glass-section">
-                <div class="section-header">
-                    <span class="tag">Advanced Scent Experience</span>
-                    <h2>Deeper Fragrance Intelligence</h2>
-                    <p class="subtitle">Explore deeper insights and personalized fragrance intelligence.</p>
-                    <p style="margin-top: 1rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">Discover insights, compare fragrances, and understand what suits you best.</p>
-                </div>
-                <div class="lab-grid experience-grid">
-                    <div class="lab-card glass experience-card" onclick="openScentDNA()">
-                        <div class="lab-icon">🧬</div>
-                        <h3>Your Scent DNA</h3>
-                        <p>Analyze your preferences and build a unique scent personality profile.</p>
-                        <button class="mini-add">Build Profile</button>
-                    </div>
-                    <div class="lab-card glass experience-card" onclick="openCompareScents()">
-                        <div class="lab-icon">⚖️</div>
-                        <h3>Compare Scents</h3>
-                        <p>Side-by-side comparison of notes, longevity, and intensity to help you decide.</p>
-                        <button class="mini-add">Compare Now</button>
-                    </div>
-                    <div class="lab-card glass experience-card" onclick="openScentStory()">
-                        <div class="lab-icon">📖</div>
-                        <h3>Your Scent Story</h3>
-                        <p>Generate luxury descriptions and poetic narratives for your favorite essences.</p>
-                        <button class="mini-add">Read Story</button>
-                    </div>
-                </div>
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+}
 
-                <!-- Trending Scent Insights -->
-                <div class="trending-insights-container glass" style="margin-top: 4rem; padding: 3rem;">
-                    <div class="section-header" style="margin-bottom: 2rem;">
-                        <span class="tag">Market Pulse</span>
-                        <h3>Trending Scent Insights</h3>
-                    </div>
-                    <div id="trending-insights-content" class="insights-grid">
-                        <!-- Injected by JS -->
-                    </div>
-                </div>
-            </section>
+a, button, span, p, div, input, select, textarea {
+    text-decoration: none !important;
+}
 
-            <!-- 6. Scent Mood Cards -->
-            <section class="home-section">
-                <div class="section-header">
-                    <h2>Shop by Mood</h2>
-                </div>
-                <div class="mood-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Fresh')">
-                        <span class="mood-icon">🌊</span>
-                        <h4>Fresh</h4>
-                        <p>Crisper than a morning breeze.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Romantic')">
-                        <span class="mood-icon">🌸</span>
-                        <h4>Romantic</h4>
-                        <p>Soft whispers of petals.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Bold')">
-                        <span class="mood-icon">🌑</span>
-                        <h4>Bold</h4>
-                        <p>Unapologetically mysterious.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Calm')">
-                        <span class="mood-icon">🌲</span>
-                        <h4>Calm</h4>
-                        <p>Grounded in ancient woods.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Energetic')">
-                        <span class="mood-icon">⚡</span>
-                        <h4>Energetic</h4>
-                        <p>Vibrant tones of vitality.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Mysterious')">
-                        <span class="mood-icon">🎭</span>
-                        <h4>Mysterious</h4>
-                        <p>Shadowed depths and untold secrets.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Playful')">
-                        <span class="mood-icon">🎈</span>
-                        <h4>Playful</h4>
-                        <p>A spontaneous burst of joy.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Dreamy')">
-                        <span class="mood-icon">☁️</span>
-                        <h4>Dreamy</h4>
-                        <p>Floating through clouds of soft musk.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Zen')">
-                        <span class="mood-icon">🌿</span>
-                        <h4>Zen</h4>
-                        <p>Perfectly balanced and still.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Sensual')">
-                        <span class="mood-icon">🍷</span>
-                        <h4>Sensual</h4>
-                        <p>An intimate and heady embrace.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Vintage')">
-                        <span class="mood-icon">🕰️</span>
-                        <h4>Vintage</h4>
-                        <p>Timeless elegance from another era.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Exotic')">
-                        <span class="mood-icon">🌴</span>
-                        <h4>Exotic</h4>
-                        <p>Faraway lands and rare spices.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Rebellious')">
-                        <span class="mood-icon">🔥</span>
-                        <h4>Rebellious</h4>
-                        <p>Flouting conventions with fire.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Cozy')">
-                        <span class="mood-icon">☕</span>
-                        <h4>Cozy</h4>
-                        <p>Warm spices and comforting vanilla.</p>
-                    </div>
-                    <div class="mood-card glass" onclick="filterCollectionByNote('Vibrant')">
-                        <span class="mood-icon">✨</span>
-                        <h4>Vibrant</h4>
-                        <p>Sparkling, energetic, and alive.</p>
-                    </div>
-                </div>
-            </section>
+a {
+    transition: var(--transition-smooth);
+}
 
-            <!-- 7. Quick Perfume Finder -->
-            <section class="home-section glass-section finder-section">
-                <div class="finder-container">
-                    <div class="finder-controls">
-                        <h3>Quick Perfume Finder</h3>
-                            <div class="control" style="grid-column: 1 / -1;">
-                                <label>Search Note or Vibe</label>
-                                <input type="text" id="finder-search" class="glass-input" placeholder="e.g. Jasmine, Romantic, Bold..." style="width: 100%; margin-top: 0.5rem;" oninput="quickFindPerfume()">
-                            </div>
-                            <div class="control">
-                                <label>Family</label>
-                                <select id="finder-family" class="glass-select" onchange="quickFindPerfume()">
-                                    <option>All</option>
-                                    <option>Floral</option>
-                                    <option>Woody</option>
-                                    <option>Fresh</option>
-                                    <option>Spicy</option>
-                                    <option>Dark</option>
-                                </select>
-                            </div>
-                            <div class="control">
-                                <label>Intensity</label>
-                                <select id="finder-intensity" class="glass-select" onchange="quickFindPerfume()">
-                                    <option>All</option>
-                                    <option>Mild</option>
-                                    <option>Medium</option>
-                                    <option>Strong</option>
-                                </select>
-                            </div>
-                        <button class="cta-btn" style="margin-top: 2rem; width: 100%;" onclick="quickFindPerfume()">Match My Vibration</button>
-                    </div>
-                    <div id="finder-results" class="finder-results">
-                        <p class="empty-msg">Adjust filters to see instant matches.</p>
-                    </div>
-                </div>
-            </section>
-        </section>
+a:hover, button:hover:not(.cta-btn):not(.switch-btn) {
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
 
-        <!-- Collection Screen (Existing) -->
-        <section id="collection" class="screen">
-            <div class="screen-header">
-                <h2>Collections</h2>
-                <div class="filter-bar">
-                    <button class="filter-chip active">All</button>
-                    <button class="filter-chip">AI Recommended</button>
-                    <button class="filter-chip">Floral</button>
-                    <button class="filter-chip">Woody</button>
-                    <button class="filter-chip">Fresh</button>
-                    <button class="filter-chip">Spicy</button>
-                    <button class="filter-chip">Dark</button>
-                </div>
-            </div>
-            <div class="collection-grid" id="main-collection-grid">
-                <!-- Items injected by JS -->
-            </div>
-        </section>
+body.light-mode a:hover, body.light-mode button:hover:not(.cta-btn):not(.switch-btn) {
+    text-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
 
-        <!-- Create Your Own (Atelier 2.0) -->
-        <section id="create" class="screen">
-            <div id="creation-flow">
-                <!-- Step 1 to 5 will be injected here -->
-            </div>
-        </section>
+input, select, textarea {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: transparent;
+}
 
-        <!-- Profile Screen -->
-        <section id="profile" class="screen main-profile">
-            <div class="profile-header">
-                <div class="profile-avatar-container" style="position: relative; width: 120px; height: 120px; margin: 0 auto 1.5rem;">
-                    <div class="profile-avatar" id="user-avatar" style="width: 100%; height: 100%; font-size: 3rem; overflow: hidden;">G</div>
-                    <input type="file" id="avatar-upload" style="display: none;" accept="image/*">
-                    <button class="edit-avatar-btn" id="change-avatar-btn" title="Change Avatar" style="position: absolute; bottom: 0; right: 0; background: var(--accent-lavender); color: var(--bg-primary); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: none; cursor: pointer;">+</button>
-                    <button id="remove-avatar-btn" title="Remove Avatar" style="position: absolute; top: 0; right: 0; background: #ff4d4d; color: white; border-radius: 50%; width: 24px; height: 24px; display: none; align-items: center; justify-content: center; font-size: 0.8rem; border: none; cursor: pointer;">&times;</button>
-                </div>
-                <h2>Guest Essence</h2>
-                <p>Curating since March 2026</p>
-                <div class="profile-tag-row"><span class="tag">Standard Member</span></div>
-            </div>
-            
-            <div class="profile-tabs">
-                <button class="nav-item active" data-tab="identity">My Identity</button>
-                <button class="nav-item" data-tab="orders">Order History</button>
-                <button class="nav-item" data-tab="addresses">Saved Addresses</button>
-                <button class="nav-item" data-tab="payments">Payment Methods</button>
-                <button class="nav-item" data-tab="wishlist">Wishlist Vault</button>
-            </div>
+input::placeholder, textarea::placeholder {
+    color: var(--text-secondary);
+}
 
-            <div class="profile-content glass" id="profile-tab-content">
-                <div class="profile-section">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <h3>Personal Details</h3>
-                        <button class="secondary-btn" id="edit-profile-btn" onclick="toggleEditProfile()" style="padding: 4px 12px;">Edit Profile</button>
-                    </div>
-                    <div class="profile-info-grid" id="editable-info">
-                        <div class="info-item"><label>Full Name</label><p data-key="name">Guest User</p></div>
-                        <div class="info-item"><label>Email Address</label><p data-key="email">guest@inai.com</p></div>
-                        <div class="info-item"><label>Phone Number</label><p data-key="phone">+91 98765 43210</p></div>
-                        <div class="info-item"><label>Date of Birth</label><p data-key="birth">Not inscribed</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+/* Fix option colors in selects for both modes */
+select option {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
 
-        <!-- Cart Screen (Dedicated) -->
-        <section id="cart" class="screen main-cart">
-            <div class="screen-header">
-                <h2>Your Collection</h2>
-                <div class="subtitle">Review your curated essence selections.</div>
-            </div>
-            <div id="cart-list" class="cart-list">
-                <!-- Items injected by JS -->
-            </div>
-            <div class="cart-summary glass">
-                <h3>Order Insight</h3>
-                <div class="luxury-option">
-                    <div class="option-label">
-                        <input type="checkbox" id="gift-wrap">
-                        <label for="gift-wrap">Luxury Gift Ritual & Inscription</label>
-                    </div>
-                    <span class="price-tag">+₹499</span>
-                </div>
-                <div class="summary-details">
-                    <div class="line"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
-                    <div class="line muted"><span>Curation Tax</span><span>Calculated later</span></div>
-                    <div class="line muted"><span>Global Passage</span><span>Complementary Over ₹5,000</span></div>
-                    <div class="line total"><span>Total</span><span id="cart-total">₹0</span></div>
-                </div>
-                <button class="cta-btn checkout-btn">Initiate Curation</button>
-            </div>
-        </section>
+.glass-input, .glass-select {
+    color: var(--text-primary);
+}
 
-        <!-- Settings Screen -->
-        <section id="settings" class="screen" style="max-width: 600px; margin: 0 auto; padding-bottom: 4rem;">
-            <div class="screen-header">
-                <h2>Application Settings</h2>
-            </div>
-            <div class="settings-container">
-                <div class="settings-card glass">
-                    <h4 class="settings-title">Regional & Appearance</h4>
-                    <div class="setting-item">
-                        <div class="setting-label">
-                            <span>Display Theme</span>
-                            <small>Visual aura of the application</small>
-                        </div>
-                        <div class="switch-btns">
-                            <button class="switch-btn active" id="theme-dark-main">Dark</button>
-                            <button class="switch-btn" id="theme-light-main">Light</button>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-label">
-                            <span>Currency</span>
-                            <small>Global value representation</small>
-                        </div>
-                        <div class="switch-btns">
-                            <button class="switch-btn" data-currency="USD">USD</button>
-                            <button class="switch-btn" data-currency="EUR">EUR</button>
-                            <button class="switch-btn active" data-currency="INR">INR</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="settings-card glass">
-                    <h4 class="settings-title">Privacy & Security</h4>
-                    <div class="setting-item">
-                        <div class="setting-label">
-                            <span>Two-Factor Authentication</span>
-                            <small>Protect your essence repository</small>
-                        </div>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="2fa-toggle">
-                            <span class="toggle-slider"></span>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-label">
-                            <span>AI Personalization</span>
-                            <small>Allow learning from your sessions</small>
-                        </div>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="ai-toggle" checked>
-                            <span class="toggle-slider"></span>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-label">
-                            <span>Push Notifications</span>
-                            <small>Updates on orders and creations</small>
-                        </div>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="push-toggle" checked>
-                            <span class="toggle-slider"></span>
-                        </div>
-                    </div>
-                </div>
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: var(--font-heading);
+    transition: var(--transition-smooth);
+    color: var(--text-primary);
+}
 
-                <div class="settings-card glass">
-                    <h4 class="settings-title">Support & Account</h4>
-                    <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('contact')">
-                        <span>Help Center</span>
-                        <span class="arrow">→</span>
-                    </a>
-                    <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('sustainability')">
-                        <span>Sustainability Policy</span>
-                        <span class="arrow">→</span>
-                    </a>
-                    <div class="setting-item logout">
-                        <span>Sign Out of Inai</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+/* Glassmorphism Utility */
+.glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
 
-        <section id="scent-dna" class="dna-teaser-section">
-            <div class="dna-card">
-                <div class="dna-content">
-                    <span class="tag">AI Personalization</span>
-                    <h2>Discover Your Scent DNA</h2>
-                    <p>Our intelligent algorithm analyzes your personality, memories, and sensory preferences to reveal the notes that resonate with your soul.</p>
-                    <button class="cta-btn" onclick="launchQuiz()" style="background: var(--text-primary); color: var(--bg-primary); padding: 1rem 2rem; text-decoration: none; border-radius: 4px; margin-top: 1rem;">Start Scent Discovery</button>
-                    <div class="dna-stats">
-                        <div class="stat"><span>30+</span> Molecular Notes</div>
-                        <div class="stat"><span>10k+</span> Combinations</div>
-                        <div class="stat"><span>100%</span> Unique to You</div>
-                    </div>
-                </div>
-                <div class="dna-visual">
-                    <div class="dna-orb"></div>
-                </div>
-            </div>
-        </section>
+.top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    height: auto;
+    min-height: 70px;
+    transition: var(--transition-smooth);
+}
+
+.top-nav .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.main-nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.main-nav-links .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+}
+
+.main-nav-links .nav-item svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+}
+
+.main-nav-links .nav-item:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.main-nav-links .nav-item.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-actions svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--text-primary);
+    fill: none;
+    stroke-width: 1.5;
+    transition: var(--transition-smooth);
+}
+
+.nav-actions svg:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+}
 
 
-        <!-- Product Detail Screen -->
-        <section id="product-detail" class="screen">
-            <div class="screen-header">
-                <button class="secondary-btn" onclick="switchScreen('collection')" style="margin-bottom: 2rem;">← Back to Collection</button>
-            </div>
-            <div class="detail-container glass">
-                <div class="detail-img-section">
-                    <div id="detail-img" class="main-detail-img"></div>
-                </div>
-                <div class="detail-info-section">
-                    <span class="tag" id="detail-tag">Signature Series</span>
-                    <h1 id="detail-title">Product Name</h1>
-                    <div class="price" id="detail-price">₹0</div>
-                    <p class="description" id="detail-desc">Full description will appear here.</p>
-                    <div class="notes-section">
-                        <h4>Scent Composition</h4>
-                        <div class="pyramid">
-                            <div class="layer"><strong>Top:</strong> <span id="detail-top">...</span></div>
-                            <div class="layer"><strong>Heart:</strong> <span id="detail-heart">...</span></div>
-                            <div class="layer"><strong>Base:</strong> <span id="detail-base">...</span></div>
-                        </div>
-                    </div>
-                    <div class="modal-allergens" style="margin-top: 1.5rem; font-size: 0.85rem; padding: 1rem; background: var(--glass-bg); border-radius: 8px; border: 1px solid var(--border-color);">
-                        <strong>Allergens:</strong> <span id="detail-allergens-list">...</span>
-                    </div>
-                    <button class="cta-btn" id="detail-add-btn" style="width: 100%; margin-top: 2rem;">Add to Collection</button>
-                </div>
-            </div>
-        </section>
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    gap: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 1;
+    transition: var(--transition-smooth);
+}
 
-        <!-- Information / House Screen -->
-        <section id="info-screen" class="screen" style="max-width: 800px; margin: 0 auto; padding-bottom: 4rem;">
-            <div class="screen-header" style="margin-bottom: 2rem;">
-                <button class="secondary-btn" onclick="switchScreen('home')" style="margin-bottom: 1.5rem; padding: 0.6rem 1.5rem;">← Back to Home</button>
-                <h2 id="info-title">Information</h2>
-                <div class="subtitle" id="info-subtitle" style="color: var(--text-secondary); margin-top: 0.5rem;">Details about our house</div>
-            </div>
-            <div id="info-body" class="glass" style="padding: 2.5rem; border-radius: 16px; margin-top: 1.5rem;">
-                <!-- Content dynamically injected by JS -->
-            </div>
-        </section>
-    </main>
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    transition: var(--transition-smooth);
+}
 
-    <footer class="glass">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">INAI</div>
-                <p>Crafting sensory experiences that transcend time and space.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Experience</h4>
-                <a href="#scent-dna">Scent DNA</a>
-                <a href="#collections">Collections</a>
-            </div>
-            <div class="footer-links">
-                <h4>House</h4>
-                <a href="javascript:void(0)" class="house-link" data-content="story">Our Story</a>
-                <a href="javascript:void(0)" class="house-link" data-content="process">Process</a>
-                <a href="javascript:void(0)" class="house-link" data-content="sustainability">Sustainability</a>
-            </div>
-            <div class="footer-links">
-                <h4>Fragrance Care Guide</h4>
-                <a href="#shipping" class="house-link" data-content="shipping">Shipping</a>
-                <a href="#returns" class="house-link" data-content="returns">Returns</a>
-                <a href="#contact" class="house-link" data-content="contact">Contact</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 INAI Perfumery. All rights reserved.</p>
-        </div>
-    </footer>
+.nav-item.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
 
-    <!-- Cart Drawer -->
-    <div id="cart-drawer" class="drawer-overlay">
-        <div class="drawer-panel">
-            <div class="drawer-header">
-                <h2>Cart</h2>
-                <button class="close-drawer" id="close-cart-drawer">&times;</button>
-            </div>
-            <div class="drawer-content" id="cart-drawer-items">
-                <!-- Cart items will be injected -->
-            </div>
-            <div class="cart-actions">
-                <div class="cart-total-row">
-                    <span>Subtotal</span>
-                    <span id="cart-drawer-total">$0</span>
-                </div>
-                <button class="cta-btn checkout-btn">Proceed to Checkout</button>
-            </div>
-        </div>
-    </div>
+.mini-add {
+    padding: 0.4rem 1.2rem !important;
+    font-size: 0.8rem !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+}
 
-    <!-- Settings Drawer -->
-    <div id="settings-drawer" class="drawer-overlay">
-        <div class="drawer-panel">
-            <div class="drawer-header">
-                <h2>Settings</h2>
-                <button class="close-drawer" id="close-settings-drawer">&times;</button>
-            </div>
-            <div class="drawer-content">
-                <div class="settings-container">
-                    <div class="settings-card glass">
-                        <h4 class="settings-title">Regional & Appearance</h4>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <span>Display Theme</span>
-                                <small>Visual aura of the application</small>
-                            </div>
-                            <div class="switch-btns">
-                                <button class="switch-btn active" id="theme-dark-drawer">Dark</button>
-                                <button class="switch-btn" id="theme-light-drawer">Light</button>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <span>Currency</span>
-                                <small>Global value representation</small>
-                            </div>
-                            <div class="switch-btns">
-                                <button class="switch-btn" data-currency="USD">USD</button>
-                                <button class="switch-btn" data-currency="EUR">EUR</button>
-                                <button class="switch-btn active" data-currency="INR">INR</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-card glass">
-                        <h4 class="settings-title">Privacy & Security</h4>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <span>Two-Factor Authentication</span>
-                                <small>Protect your essence repository</small>
-                            </div>
-                            <div class="toggle-switch">
-                                <input type="checkbox" id="2fa-toggle-drawer">
-                                <span class="toggle-slider"></span>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <span>AI Personalization</span>
-                                <small>Allow learning from your sessions</small>
-                            </div>
-                            <div class="toggle-switch">
-                                <input type="checkbox" id="ai-toggle-drawer" checked>
-                                <span class="toggle-slider"></span>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <span>Push Notifications</span>
-                                <small>Updates on orders and creations</small>
-                            </div>
-                            <div class="toggle-switch">
-                                <input type="checkbox" id="push-toggle-drawer" checked>
-                                <span class="toggle-slider"></span>
-                            </div>
-                        </div>
-                    </div>
+.mini-add:hover {
+    background: var(--text-primary) !important;
+    color: var(--bg-primary) !important;
+}
 
-                    <div class="settings-card glass">
-                        <h4 class="settings-title">Support & Account</h4>
-                        <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('contact')">
-                            <span>Help Center</span>
-                            <span class="arrow">→</span>
-                        </a>
-                        <a href="javascript:void(0)" class="setting-item clickable" onclick="showInfoPage('sustainability')">
-                            <span>Sustainability Policy</span>
-                            <span class="arrow">→</span>
-                        </a>
-                        <div class="setting-item logout">
-                            <span>Sign Out of Inai</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+.nav-item.active span {
+    text-decoration: none;
+}
 
+/* Splash Screen */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-    <!-- Overlays & Modals -->
-    <!-- Scent DNA Quiz Overlay -->
-    <div id="quiz-overlay" class="quiz-overlay">
-        <div class="quiz-container glass">
-            <button class="close-quiz" id="close-quiz-main">&times;</button>
-            <div class="quiz-progress-bar"><div class="progress"></div></div>
-            <div id="quiz-step-container"></div>
-            <div class="quiz-nav">
-                <button id="prev-step" class="secondary-btn" style="display: none;">Back</button>
-                <button id="next-step" class="cta-btn">Next Step</button>
-            </div>
-        </div>
-    </div>
+.mist-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 
-    <!-- Search Overlay -->
-    <div id="search-overlay" class="quiz-overlay">
-        <div class="quiz-container glass">
-            <button class="close-search close-quiz">&times;</button>
-            <span class="tag">Search</span>
-            <h2>Find Your Essence</h2>
-            <div class="search-input-wrapper">
-                <input type="text" id="site-search" placeholder="Search by notes, mood, or collection..." class="glass">
-            </div>
-            <div id="search-results" class="search-results"></div>
-        </div>
-    </div>
+.mist {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(146, 132, 173, 0.4) 0%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0;
+    animation: sprayMist 3s ease-out forwards;
+}
 
-    <!-- Product Details Modal -->
-    <div id="product-modal" class="modal-overlay">
-        <div class="modal-content glass">
-            <button class="close-quiz" id="close-product-modal">&times;</button>
-            <div class="modal-img-container">
-                <div id="modal-img" class="modal-img"></div>
-            </div>
-            <div class="modal-details">
-                <span class="tag" id="modal-tag">Signature Collection</span>
-                <h2 id="modal-title">Product Name</h2>
-                <div class="notes" id="modal-notes">Top • Heart • Base</div>
-                <p class="description" id="modal-desc"></p>
-                <div class="modal-allergens" id="modal-allergens">
-                    <strong>Allergens:</strong> <span id="allergens-list">Linalool, Limonene, Geraniol, Citral.</span>
-                </div>
-                <div class="price" id="modal-price" style="font-size: 2rem; margin: 2rem 0;">$180</div>
-                <button class="cta-btn" id="modal-add-to-cart">Add to Cart</button>
-            </div>
-        </div>
-    </div>
+.mist-2 {
+    animation-delay: 0.5s;
+    width: 400px;
+    background: radial-gradient(circle, rgba(229, 179, 153, 0.3) 0%, transparent 70%);
+}
 
-    <!-- Advanced Experience Overlays -->
-    <!-- Scent DNA Overlay -->
-    <div id="dna-profile-overlay" class="quiz-overlay" style="display: none;">
-        <div class="quiz-container glass" style="max-width: 600px;">
-            <button class="close-quiz" onclick="closeOverlay(document.getElementById('dna-profile-overlay'))">&times;</button>
-            <div id="dna-quiz-container">
-                <!-- Quiz or Profile result injected here -->
-            </div>
-        </div>
-    </div>
+@keyframes sprayMist {
+    0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translate(-50%, -200px) scale(3); opacity: 0; }
+}
 
-    <!-- Comparison Overlay -->
-    <div id="comparison-overlay" class="quiz-overlay" style="display: none;">
-        <div class="quiz-container glass" style="max-width: 900px; width: 95%;">
-            <button class="close-quiz" onclick="closeOverlay(document.getElementById('comparison-overlay'))">&times;</button>
-            <span class="tag">Fragrance Comparison</span>
-            <h2>Select Essences to Compare</h2>
-            <div id="comparison-selector" class="comparison-selector" style="margin: 2rem 0;">
-                <!-- Product checkboxes injected here -->
-            </div>
-            <div id="comparison-table-container" class="comparison-scroll">
-                <!-- Comparison table injected here -->
-            </div>
-        </div>
-    </div>
+.splash-logo {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    background: linear-gradient(45deg, var(--accent-lavender), var(--accent-peach));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: fadeInScale 2.5s ease-out forwards 1.2s;
+}
 
-    <!-- Scent Story Overlay -->
-    <div id="scent-story-overlay" class="quiz-overlay" style="display: none;">
-        <div class="quiz-container glass" style="max-width: 650px;">
-            <button class="close-quiz" onclick="closeOverlay(document.getElementById('scent-story-overlay'))">&times;</button>
-            <span class="tag">Scent Story</span>
-            <h2>Invoke Your Narrative</h2>
-            <div style="margin: 2rem 0;">
-                <label>Select an Essence</label>
-                <select id="story-scent-select" class="glass-select" style="width: 100%; margin-top: 0.5rem;"></select>
-                <button class="cta-btn" style="width: 100%; margin-top: 1.5rem;" onclick="generateScentStory()">Compose Narrative</button>
-            </div>
-            <div id="story-display" class="story-display glass" style="padding: 2rem; border-radius: 12px; margin-top: 1rem; min-height: 200px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
-                <p class="empty-msg">Select a fragrance to unveil its atmospheric soul.</p>
-            </div>
-            <div id="story-actions" style="display: none; margin-top: 1.5rem; gap: 1rem; justify-content: center;">
-                <button class="secondary-btn" id="copy-story-btn">Copy Story</button>
-                <button class="secondary-btn" id="save-story-btn">Save to Profile</button>
-            </div>
-        </div>
-    </div>
+.splash-tagline {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s forwards 2.5s;
+}
 
-    <!-- Scent Poetry Overlay -->
-    <div id="poetry-overlay" class="quiz-overlay" style="display: none;">
-        <div class="quiz-container glass" style="max-width: 600px; text-align: center;">
-            <button class="close-quiz" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
-            <span class="tag">Scent Poetry</span>
-            <h2>Ode to Fragrance</h2>
-            <div style="margin: 2rem 0;">
-                <select id="poetry-scent-select" class="glass" style="padding: 0.8rem 1rem; width: 100%; border-radius: 8px; margin-bottom: 1.5rem; color: var(--text-primary); background: transparent; border: 1px solid var(--border-color);">
-                    <option value="Nocturnal Silk" style="color: black;">Nocturnal Silk</option>
-                    <option value="Ethereal Dew" style="color: black;">Ethereal Dew</option>
-                    <option value="Mitti (Rain)" style="color: black;">Mitti (Rain)</option>
-                    <option value="Royal Spice" style="color: black;">Royal Spice</option>
-                </select>
-                <button class="cta-btn" onclick="generatePoetry()">Generate Stanza</button>
-            </div>
-            <div id="poetry-display" style="font-style: italic; font-size: 1.2rem; line-height: 1.8; margin-top: 2rem; white-space: pre-wrap; min-height: 150px; display: flex; align-items: center; justify-content: center; padding: 1.5rem; border-radius: 12px; background: rgba(0,0,0,0.2);">
-                Select an essence to reveal its poetic soul.
-            </div>
-        </div>
-    </div>
+@keyframes fadeInScale {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
 
-    <!-- Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
+/* Scent Particles */
+.scent-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
 
-    <script src="main.js"></script>
-</body>
-</html>
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(2px);
+    pointer-events: none;
+    opacity: 0;
+    animation: riseAndFade 4s ease-out forwards;
+}
+
+@keyframes riseAndFade {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(var(--dx), var(--dy)) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* App Container */
+#app-container {
+    padding-top: 100px;
+    padding-bottom: 2rem;
+    min-height: 100vh;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Horizontal Scroll Sections */
+.horizontal-scroll-section {
+    padding: 2rem 1.5rem;
+}
+
+.horizontal-scroll-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--accent-lavender);
+}
+
+.h-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.h-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Mini Cards for H-Scroll */
+.mini-card {
+    min-width: 280px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.mini-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-8px) scale(1.02);
+}
+
+.mini-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+.mini-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.mini-card span {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Hero Section - Mobile First */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    background: var(--bg-primary);
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 450px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.5s;
+}
+
+.hero-visual {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards 0.8s;
+}
+
+/* Desktop Overrides */
+@media (min-width: 768px) {
+    .hero {
+        height: 100vh;
+        flex-direction: row;
+        text-align: left;
+        padding: 0 8%;
+        justify-content: flex-start;
+        background: radial-gradient(circle at 70% 30%, #1a1a24 0%, var(--bg-primary) 70%);
+    }
+
+    .hero-content {
+        max-width: 600px;
+    }
+
+    .hero-content h1 {
+        font-size: 4.5rem;
+    }
+
+    .hero-visual {
+        position: absolute;
+        right: 5%;
+        width: 45%;
+        height: 80%;
+        max-width: none;
+        margin-top: 0;
+    }
+}
+
+.hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+}
+
+.cta-btn {
+    padding: 1.2rem 2.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.7s;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.cta-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.secondary-btn {
+    margin-left: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 1.2rem 2.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.8s;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(255,255,255,0.4);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.secondary-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Advanced Experience Section & Cards */
+.experience-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.experience-card {
+    padding: 4rem 3rem;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.experience-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.experience-card .lab-icon {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+}
+
+.experience-card:hover .lab-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
+}
+
+/* Trending Insights */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.insight-item {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.insight-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+}
+
+.insight-val {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--accent-lavender);
+}
+
+/* Comparison Table */
+.comparison-scroll {
+    overflow-x: auto;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.comparison-table th {
+    font-family: var(--font-heading);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.comparison-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Scent DNA Profile Result */
+.dna-profile-result {
+    text-align: center;
+    padding: 2rem;
+    animation: fadeIn 0.8s ease;
+}
+
+.dna-badge {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+/* Story Display */
+.story-display {
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.story-tagline {
+    display: block;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--accent-lavender);
+    font-family: var(--font-heading);
+}
+
+/* Responsive */
+/* Collections Section */
+.collections-section {
+    padding: 8rem 8%;
+    background: var(--bg-secondary);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.section-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.collection-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.collection-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-10px) scale(1.02);
+}
+
+.collection-card:active {
+    transform: scale(0.98);
+}
+
+.card-img {
+    height: 350px;
+    width: 100%;
+}
+
+.card-content {
+    padding: 2.5rem;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.price {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--accent-peach);
+    font-size: 1.2rem;
+}
+
+.card-notes {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.card-allergens {
+    font-size: 0.7rem;
+    color: var(--accent-lavender);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Screen Header */
+.screen-header {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(to bottom, rgba(20, 20, 24, 0.8), transparent);
+}
+
+.screen-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.filter-chip {
+    padding: 0.6rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    position: relative;
+    cursor: pointer;
+}
+
+.filter-chip:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.filter-chip.active {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.filter-chip.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 0;
+    background: transparent;
+}
+
+/* Profile Screen Styles */
+.profile-header {
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--text-primary);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-primary);
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.p-stat {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.p-stat span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.profile-menu {
+    padding: 0 1.5rem;
+}
+
+.menu-item {
+    padding: 1.2rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: none;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.menu-item:hover {
+    padding-left: 0.5rem;
+}
+
+.menu-item::after {
+    content: '→';
+    color: var(--accent-lavender);
+    font-weight: 300;
+}
+
+/* Settings List */
+.settings-list {
+    padding: 0 1.5rem;
+}
+
+.setting-item {
+    padding: 1.2rem 0;
+    background: transparent;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.setting-item:hover {
+    padding-left: 0.5rem;
+}
+
+.setting-item:first-child { border-radius: 0; }
+.setting-item:last-child { border-radius: 0; border-bottom: none; }
+
+.toggle {
+    width: 38px;
+    height: 18px;
+    border: 1px solid var(--text-secondary);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.toggle::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.toggle.active {
+    border-color: var(--accent-lavender);
+}
+
+.toggle.active::before {
+    left: 22px;
+    background: var(--accent-lavender);
+    box-shadow: 0 0 5px var(--accent-lavender);
+}
+
+@media (max-width: 1024px) {
+    .nav-links { gap: 1.5rem; }
+    .hero-content h1 { font-size: 2.8rem; }
+}
+
+/* DNA Teaser Section */
+.dna-teaser-section {
+    padding: 10rem 8%;
+    display: flex;
+    justify-content: center;
+}
+
+.dna-card {
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 0;
+    padding: 5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.dna-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(179, 156, 208, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.creation-step {
+    padding: 2rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.creation-step h2 {
+    color: var(--text-primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.creation-step span.tag {
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* Monochrome Utility Classes */
+.text-bw {
+    color: var(--text-primary) !important;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Override existing lavender/peach color usages */
+.notes, .modal-details .notes, .tag, .heritage-badge, .price, .stat span, .search-match:hover .match-name {
+    color: var(--text-primary) !important;
+}
+
+.price {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.modal-details h2, .screen-header h2 {
+    color: var(--text-primary);
+}
+
+.creation-step h2 {
+    color: var(--text-primary);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.note-chip.active, .filter-chip.active {
+    color: var(--text-primary) !important;
+    font-weight: 700;
+}
+
+.note-chip.active {
+    text-decoration: none;
+}
+
+/* Note Chips in Atelier */
+.note-chip {
+    padding: 0.5rem 0.8rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.note-chip.active {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Intensity Chips */
+.intensity-chip {
+    padding: 0.8rem 1.2rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
+}
+
+.intensity-chip.active {
+    color: var(--text-primary) !important;
+    font-weight: 700;
+    transform: scale(1.1);
+}
+
+/* Mood Selection */
+.mood-card {
+    background: transparent;
+    border: none;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.mood-card {
+    color: var(--text-primary);
+}
+
+.mood-text {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.mood-card:hover {
+    background: var(--glass-border);
+    transform: scale(1.05);
+}
+
+.mood-card.active {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    transform: translateY(-5px);
+}
+
+.mood-card.active .mood-icon {
+    transform: scale(1.2);
+}
+
+.dna-content {
+    flex: 1;
+}
+
+.dna-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+}
+
+.dna-content p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.dna-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.stat {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.stat span {
+    display: block;
+    color: var(--accent-peach);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dna-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.dna-orb {
+    display: none;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); opacity: 0.3; }
+    to { transform: scale(1.2); opacity: 0.5; }
+}
+
+/* Footer */
+footer {
+    padding: 6rem 8% 3rem;
+    margin-top: 5rem;
+    border-radius: 50px 50px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+
+.footer-brand p {
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    max-width: 250px;
+}
+
+.footer-links h4 {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--accent-lavender);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 3rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 1024px) {
+    .dna-card { flex-direction: column; padding: 3rem; text-align: center; }
+    .dna-stats { justify-content: center; gap: 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { display: none; }
+    .hero { flex-direction: column; text-align: center; padding-top: 15vh; }
+    .hero-content { margin-bottom: 4rem; }
+    .hero-visual { position: relative; width: 100%; height: 40vh; right: 0; }
+    .hero-content h1 { font-size: 3rem; }
+}
+
+/* Quiz Overlay */
+.quiz-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-bg);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+}
+
+.quiz-container {
+    width: 95%;
+    max-width: 800px;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    position: relative;
+    color: var(--text-primary);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.quiz-container h2 {
+    color: var(--text-primary);
+    padding-right: 2rem;
+}
+
+.close-quiz {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-smooth);
+    z-index: 10;
+}
+
+.close-quiz:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    transform: rotate(90deg);
+}
+
+.quiz-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--glass-border);
+    border-radius: 2px;
+    margin-bottom: 3rem;
+}
+
+.quiz-progress-bar .progress {
+    height: 100%;
+    background: var(--accent-lavender);
+    width: 0%;
+    transition: var(--transition-smooth);
+}
+
+.quiz-step h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.quiz-step p {
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.quiz-option {
+    padding: 1.5rem 0;
+    border: none;
+    border-radius: 0;
+    text-align: left;
+    background: transparent;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.quiz-option:hover {
+    opacity: 0.8;
+}
+
+.quiz-option.active {
+    font-weight: 700;
+    padding-left: 1rem;
+}
+
+.quiz-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* Override hero animation for quiz buttons - must always be visible */
+.quiz-nav .cta-btn,
+.quiz-nav .secondary-btn {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    color: var(--text-primary) !important;
+    padding: 0.8rem 2rem !important;
+    border: 1px solid var(--text-primary) !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 50px !important;
+    min-width: 160px !important;
+}
+
+.quiz-nav .cta-btn:hover {
+    transform: translateY(-3px) !important;
+    text-shadow: 0 0 10px rgba(var(--text-primary), 0.4);
+}
+
+/* Atelier Section */
+.atelier-section {
+    padding: 8rem 8%;
+}
+
+.atelier-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    padding: 5rem;
+    border-radius: 40px;
+}
+
+.note-layer {
+    margin-bottom: 3.5rem;
+}
+
+.note-layer h4 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-layer .info {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.note-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.note-chip {
+    padding: 0.8rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: none;
+    border-radius: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.note-chip.active {
+    background: transparent;
+    color: var(--text-primary);
+    border-bottom-color: transparent;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.atelier-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-left: 1px solid var(--glass-border);
+    padding-left: 4rem;
+}
+
+.perfume-bottle-animation {
+    width: 150px;
+    height: 250px;
+    border: 3px solid var(--glass-border);
+    border-radius: 10px 10px 40px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.liquid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(180deg, var(--accent-lavender), var(--accent-peach));
+    opacity: 0.6;
+    transition: height 0.5s ease;
+}
+
+.creation-summary h3 {
+    margin-bottom: 1rem;
+}
+
+.creation-summary p {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+}
+
+@media (max-width: 1024px) {
+    .atelier-container { grid-template-columns: 1fr; }
+    .atelier-preview { border-left: none; border-top: 1px solid var(--glass-border); padding: 4rem 0 0; }
+}
+
+/* Cart Specific */
+.cart-items {
+    margin: 3rem 0;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* --- Settings UI Improvement --- */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.settings-card {
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.settings-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    opacity: 0.9;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: none;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.setting-label span {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.setting-label small {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.setting-item.clickable {
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.setting-item.clickable:hover {
+    padding-left: 0.5rem;
+    color: var(--accent-lavender);
+}
+
+.setting-item.logout {
+    justify-content: center;
+    color: #ff4d4d;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: none;
+}
+
+/* --- Settings Toggle Redesign --- */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: #fff;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--text-primary);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+    background-color: var(--bg-primary);
+}
+
+body.light-mode .toggle-slider {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .toggle-slider:before {
+    background-color: #666;
+}
+
+body.light-mode input:checked + .toggle-slider {
+    background-color: #000;
+}
+
+body.light-mode input:checked + .toggle-slider:before {
+    background-color: #fff;
+}
+
+/* --- Home Screen New Sections --- */
+.home-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.wheel-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.wheel-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.wheel-node {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1.1rem;
+}
+
+.wheel-node:hover, .wheel-node.active {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+body.light-mode .wheel-node {
+    color: #444; border-color: #ddd;
+}
+body.light-mode .wheel-node:hover, body.light-mode .wheel-node.active {
+    color: #fff; background: #000;
+}
+body.light-mode .wheel-display {
+    color: #000; background: rgba(0,0,0,0.05);
+}
+
+.wheel-display {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    border-radius: 12px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.spotlight-card {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+    font-size: 1.15rem;
+}
+
+.spotlight-img {
+    height: 400px;
+    border-radius: 20px;
+}
+
+/* 1. Ingredient Spotlight Font Improvements */
+.spotlight-content h3 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    font-weight: 400;
+}
+
+.spotlight-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    max-width: 90%;
+}
+
+.spotlight-content .featured-in {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.notes-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.note-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+body.light-mode .note-pill {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #444;
+}
+
+.note-pill:hover {
+    background: rgba(187, 154, 247, 0.1);
+    border-color: var(--accent-lavender);
+    color: var(--accent-lavender);
+}
+
+body.light-mode .note-pill:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.daily-focus {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 4rem;
+    overflow: hidden;
+}
+
+.daily-img {
+    height: 400px;
+}
+
+.daily-details {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mood-card {
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.mood-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-lavender);
+    background: rgba(187, 154, 247, 0.05);
+}
+
+.mood-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.finder-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.finder-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.glass-select, .glass-input {
+    width: 100%;
+    background: rgba(0,0,0,0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    font-family: inherit;
+}
+body.light-mode .glass-select, body.light-mode .glass-input {
+    background: #fff; color: #000;
+}
+
+.mini-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mini-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.glass-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+body.light-mode .glass-input::placeholder {
+    color: #888;
+}
+
+/* --- Profile Enhancements --- */
+.profile-section {
+    width: 80%;
+    margin: 3rem auto;
+    padding: 45px !important;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    position: relative;
+}
+
+.profile-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+#edit-profile-btn {
+    position: absolute;
+    top: 45px;
+    right: 45px;
+    padding: 8px 20px !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5rem;
+    row-gap: 1.5rem;
+}
+
+.info-item {
+    border-bottom: none;
+    padding: 1.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-item label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+body.light-mode .profile-section {
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+body.light-mode .info-item {
+    border-bottom: none;
+}
+
+/* --- Product Detail Screen --- */
+.detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 4rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    border-radius: 30px;
+}
+
+.main-detail-img {
+    width: 100%;
+    aspect-ratio: 1/1.2;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.detail-info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detail-info-section h1 {
+    font-size: 3.5rem;
+    margin: 1rem 0;
+}
+
+.detail-info-section .price {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.notes-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.notes-section h4 {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.pyramid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.pyramid .layer {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .detail-container { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
+    .detail-info-section h1 { font-size: 2.5rem; }
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info-grid input {
+    font-size: 1.1rem;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 100%;
+}
+
+.edit-avatar-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent-lavender);
+}
+
+@media (max-width: 900px) {
+    .wheel-container, .spotlight-card, .daily-focus, .finder-container {
+        grid-template-columns: 1fr;
+    }
+    .daily-img { height: 250px; }
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.cart-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.cart-item p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--accent-peach);
+}
+
+.remove-item {
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.cart-footer {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-footer .total {
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.cart-footer .total span {
+    color: var(--accent-lavender);
+    font-weight: 700;
+}
+
+.card-add-btn {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 0.8rem;
+}
+
+/* Drawer System */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer-panel {
+    position: absolute;
+    top: 0;
+    right: -var(--drawer-width);
+    width: var(--drawer-width);
+    height: 100%;
+    background: var(--bg-primary);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    transition: var(--transition-smooth);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer-overlay.active .drawer-panel {
+    right: 0;
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.drawer-header h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.close-drawer {
+    font-size: 2rem;
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Custom Scrollbar */
+.drawer-content::-webkit-scrollbar { width: 4px; }
+.drawer-content::-webkit-scrollbar-track { background: transparent; }
+.drawer-content::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+
+/* Creation Flow Styles */
+#creation-flow {
+    padding: 2rem 1.5rem;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.creation-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.mood-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.mood-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.mood-card.active {
+    font-weight: 700;
+    box-shadow: none;
+    transform: scale(1.05);
+}
+
+.mood-icon { font-size: 2.5rem; }
+.mood-text { font-size: 0.9rem; font-weight: 500; }
+
+.intensity-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem 0;
+}
+
+.intensity-chip {
+    padding: 1rem 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    flex: 1;
+    transition: var(--transition-smooth);
+}
+
+.intensity-chip.active {
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.creation-nav {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.creation-nav button {
+    flex: 1;
+}
+
+#custom-name-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+#custom-name-input:focus {
+    outline: none;
+    border-color: var(--accent-lavender);
+}
+
+/* Indian Heritage Special Styles */
+.heritage-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0;
+    text-transform: uppercase;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.control-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    transition: var(--transition-smooth);
+}
+
+.control-item:hover {
+    border-color: var(--accent-lavender);
+}
+
+.control-label span {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.control-label small {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.switch-btns {
+    display: flex;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.switch-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: transparent;
+}
+
+.switch-btn.active {
+    color: var(--accent-lavender);
+    font-weight: 600;
+    text-decoration: none;
+    text-underline-offset: 4px;
+}
+
+/* Settings Drawer Buttons */
+.auth-options {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.auth-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent-lavender);
+    font-size: 0.9rem;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-decoration: none;
+    text-underline-offset: 5px;
+}
+
+.switch-btns {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.switch-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+}
+
+.switch-btn.active {
+    color: var(--accent-lavender);
+    font-weight: 600;
+    text-decoration: none;
+    text-underline-offset: 4px;
+}
+
+.drawer-panel {
+    background: var(--bg-primary); /* Cleaner solid background */
+    border-left: 1px solid var(--glass-border);
+    padding: 4rem 2rem;
+}
+
+.settings-group h4 {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+}
+
+.profile-card {
+    margin-bottom: 4rem;
+}
+
+/* ── Premium Cart Items & Alignment ── */
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cart-item.glass:hover {
+    border-left-color: var(--accent-lavender) !important;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.qty-btn:hover {
+    color: var(--accent-lavender) !important;
+    transform: scale(1.2);
+}
+
+.text-btn:hover {
+    color: var(--accent-lavender) !important;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); filter: brightness(1) blur(0px); }
+    100% { transform: scale(1.05); filter: brightness(1.2) blur(2px); }
+}
+
+.cart-actions {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+}
+
+.empty-cart-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    :root { --drawer-width: 100%; }
+    .drawer-panel { padding: 2rem; }
+}
+
+/* Search Overlay Refinement */
+#search-overlay {
+    z-index: 2500;
+}
+
+.search-input-wrapper {
+    margin: 3rem 0;
+}
+
+#site-search {
+    width: 100%;
+    padding: 1.5rem 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    transition: var(--transition-smooth);
+}
+
+#site-search:focus {
+    outline: none;
+}
+
+.search-results {
+    margin-top: 2rem;
+}
+
+.search-match {
+    padding: 1.5rem 0;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.search-match:hover {
+    padding-left: 0.5rem;
+}
+
+.match-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.match-info {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.toggle {
+    width: 40px;
+    height: 20px;
+    background: var(--glass-border);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.toggle.active {
+    background: var(--accent-lavender);
+}
+
+.toggle.active::after {
+    left: 22px;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3000;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 1px solid var(--accent-lavender);
+    margin-bottom: 0.5rem;
+    box-shadow: var(--soft-shadow);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: slideUpFade 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Product Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(15px);
+    z-index: 2500;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 4rem;
+    border-radius: 30px;
+    position: relative;
+}
+
+.modal-img {
+    height: 100%;
+    min-height: 400px;
+    border-radius: 20px;
+}
+
+.modal-details h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.home-section:last-of-type {
+    margin-bottom: 4rem;
+}
+
+.creative-item svg {
+    width: 50px;
+    height: 50px;
+    stroke: var(--accent-lavender);
+    margin-bottom: 2rem;
+}
+
+/* Naming UI in Atelier */
+.naming-container {
+    margin: 2rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.naming-container input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+.naming-container input:focus {
+    border-color: var(--accent-lavender);
+    outline: none;
+}
+
+.suggestion-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Badge Utility */
+.badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--accent-lavender);
+    letter-spacing: 2px;
+}
+
+/* ═══════════════════════════════════════════════
+   PREMIUM UI OVERHAUL — 2026
+═══════════════════════════════════════════════ */
+
+/* Smooth screen fade transitions */
+.screen {
+    animation: screenFade 0.4s ease-out;
+}
+@keyframes screenFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Navigation: tooltip via title attribute + underline active ── */
+.main-nav-links .nav-item {
+    position: relative;
+}
+.main-nav-links .nav-item.active {
+    position: relative;
+}
+.main-nav-links .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 1.5px;
+    background: var(--text-primary);
+    border-radius: 2px;
+}
+/* Tooltip */
+.main-nav-links .nav-item[title]:hover::before {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1100;
+}
+
+/* ── Hero enhancements ── */
+.hero {
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(255,255,255,0.04) 0%, transparent 80%);
+    pointer-events: none;
+}
+.hero-content h1 {
+    letter-spacing: -1px;
+}
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.hero-visual img {
+    transition: transform 8s ease;
+}
+
+/* CTA "Start Creating" button — always visible overrides */
+.hero-btns .cta-btn, .hero-btns .secondary-btn {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+/* ── Collection grid & cards ── */
+.collection-grid {
+    padding: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .collection-grid {
+        padding: 2rem 3rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+.collection-card {
+    position: relative;
+    cursor: pointer;
+}
+.collection-card .card-img {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition-smooth);
+    background-size: cover !important;
+    background-position: center !important;
+}
+/* Image zoom on hover */
+.collection-card:hover .card-img {
+    transform: scale(1.0); /* card scales via parent */
+}
+.collection-card .card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.collection-card:hover .card-img::after {
+    opacity: 1;
+}
+
+/* Quick action buttons overlay */
+.card-quick-actions {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+.collection-card:hover .card-quick-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+.quick-action-btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+}
+.quick-action-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+.card-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* ── Mini cards — image object-fit cover ── */
+.mini-card img {
+    object-fit: cover;
+    object-position: center top;
+    background: var(--bg-secondary);
+}
+
+/* ── Image lazy loading fade-in ── */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* ── Loading skeleton ── */
+.skeleton {
+    background: linear-gradient(90deg, var(--bg-secondary) 25%, rgba(255,255,255,0.04) 50%, var(--bg-secondary) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 8px;
+}
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+.skeleton-card {
+    height: 380px;
+    border-radius: 20px;
+}
+.skeleton-img {
+    height: 300px;
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 0;
+}
+
+/* ── Home section headings ── */
+.horizontal-scroll-section h3 {
+    border-left: none;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    padding-left: 0;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+.horizontal-scroll-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 1px;
+    background: var(--text-primary);
+}
+
+/* ── Feature / Creative Item cards ── */
+.creative-item {
+    overflow: hidden;
+    position: relative;
+}
+.creative-item-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    filter: brightness(0.7);
+    transition: filter 0.4s ease, transform 0.4s ease;
+    display: block;
+}
+.creative-item:hover .creative-item-img {
+    filter: brightness(0.9);
+    transform: scale(1.03);
+}
+.creative-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+.creative-item svg {
+    margin-bottom: 1rem;
+}
+
+/* ── Profile page: circular avatar placeholder ── */
+.profile-avatar {
+    overflow: hidden;
+    position: relative;
+}
+.profile-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--glass-border);
+}
+
+/* ── Profile tabs — underline only ── */
+.profile-tabs button {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.profile-tabs button:hover {
+    color: var(--text-primary);
+}
+.profile-tabs button.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ── Cart improvements ── */
+.cart-list {
+    padding: 0 1.5rem;
+}
+@media (min-width: 600px) {
+    .cart-list { padding: 0 3rem; }
+}
+.cart-summary {
+    margin: 2rem 1.5rem;
+}
+@media (min-width: 600px) {
+    .cart-summary { margin: 2rem 3rem; }
+}
+
+/* ── Smooth hover lift for product cards ── */
+.collection-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+}
+.mini-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.25);
+}
+.mini-card:hover img {
+    transform: scale(1.04);
+}
+
+/* ── Modal allergens ── */
+.modal-allergens {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* ── Responsive modal ── */
+@media (max-width: 700px) {
+    .modal-content {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-img { min-height: 220px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ── Smooth scrolling ── */
+html { scroll-behavior: smooth; }
+
+/* ── Collection filter chips spacing ── */
+.filter-bar {
+    gap: 0;
+}
+.filter-chip {
+    padding: 0.6rem 1.4rem;
+    border-radius: 0;
+    letter-spacing: 1px;
+}
+.filter-chip.active::after {
+    height: 1.5px;
+}
+
+/* ── Section header spacing ── */
+.screen-header {
+    padding: 2.5rem 1.5rem 1.5rem;
+}
+@media (min-width: 768px) {
+    .screen-header { padding: 3rem 3rem 2rem; }
+}
+
+/* ── Accessible focus rings ── */
+button:focus-visible, a:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 3px;
+}
+
+/* ── Tag style (no background) ── */
+.tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    padding: 0;
+    background: none;
+}
+
+/* ── Cart recommend cards fix ── */
+#cart-list .mini-card img {
+    background: var(--bg-secondary);
+}
+
+/* responsive tablet layout improvements */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero-content h1 { font-size: 3.5rem; }
+    .collection-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+
+/* ── Specific Refinements for Profile & Cart ── */
+.main-profile {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 4rem;
+}
+.profile-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    font-size: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    font-family: var(--font-heading);
+}
+.profile-tabs {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 0px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.profile-tabs::-webkit-scrollbar { display: none; }
+
+.profile-section {
+    margin-bottom: 4rem;
+}
+.profile-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+.info-item label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+.info-item p {
+    font-size: 1.1rem;
+    padding-bottom: 0.8rem;
+}
+.tag-row {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+/* Cart improvements */
+.main-cart {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 4rem;
+}
+.cart-summary {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: 0;
+    margin-top: 4rem;
+    border: 1px solid var(--glass-border);
+}
+.cart-summary h3 {
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+.promo-box {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+.promo-box input {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 0;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: var(--text-primary);
+}
+.luxury-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+}
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.summary-details .line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+.summary-details .line.total {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--text-primary);
+    font-size: 1.8rem;
+    font-family: var(--font-heading);
+}
+
+/* Accessibility & Utility */
+.highlight-text {
+    color: var(--accent-lavender);
+    font-weight: 500;
+}
+@media (max-width: 768px) {
+    .profile-tabs { gap: 1.5rem; }
+    .cart-summary { padding: 2rem; }
+}
