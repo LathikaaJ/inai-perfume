@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Global State ---
     let cart = []; // Structure: { id: string, name: string, desc: string, price: number, qty: number, defaultImg: string }
+    let wishlist = [];
     let currentCurrency = 'INR';
     const exchangeRates = { USD: 1, EUR: 0.92, INR: 83 };
     const currencySymbols = { USD: '$', EUR: '€', INR: '₹' };
@@ -18,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const dnaTrigger = document.querySelector('.dna-card .cta-btn');
 
     const openOverlay = (el) => { if (el) el.style.display = 'flex'; };
+    window.openOverlay = openOverlay;
     const closeOverlay = (el) => { if (el) el.style.display = 'none'; };
+    window.closeOverlay = closeOverlay;
 
     // --- Theme & Currency Logic ---
     const setTheme = (mode) => {
@@ -28,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('light-mode');
         }
         
-        document.querySelectorAll('#theme-light, #theme-dark, #theme-dark-main, #theme-light-main').forEach(btn => {
+        document.querySelectorAll('#theme-light, #theme-dark, #theme-dark-main, #theme-light-main, #theme-dark-drawer, #theme-light-drawer').forEach(btn => {
             btn.classList.toggle('active', btn.id.includes(mode));
         });
         
@@ -48,9 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // Refresh all potentially visible price elements
         const activeScreen = document.querySelector('.screen.active');
-        if (activeScreen.id === 'home') renderHomeCollections();
-        if (activeScreen.id === 'collection') renderCollections(currentFilter);
-        if (activeScreen.id === 'cart') updateCartUI();
+        if (activeScreen?.id === 'home') renderHomeCollections();
+        if (activeScreen?.id === 'collection') renderCollections(currentFilter);
+        if (activeScreen?.id === 'cart') updateCartUI();
         if (productModal.style.display === 'flex') {
             const activeId = document.getElementById('modal-add-to-cart').dataset.activeId;
             if (activeId) openProductDetail(activeId);
@@ -279,7 +282,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Splash Screen Logic ---
     const splash = document.getElementById('splash-screen');
+    const particleContainer = document.querySelector('.scent-particles');
+
+    const createParticles = () => {
+        if (!particleContainer) return;
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            
+            const size = Math.random() * 15 + 5;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const dx = (Math.random() - 0.5) * 200;
+            const dy = -Math.random() * 300;
+            const delay = Math.random() * 3;
+
+            p.style.width = `${size}px`;
+            p.style.height = `${size}px`;
+            p.style.left = `${x}%`;
+            p.style.top = `${y}%`;
+            p.style.setProperty('--dx', `${dx}px`);
+            p.style.setProperty('--dy', `${dy}px`);
+            p.style.animationDelay = `${delay}s`;
+
+            particleContainer.appendChild(p);
+        }
+    };
+
     if (splash) {
+        createParticles();
         setTimeout(() => {
             splash.style.opacity = '0';
             setTimeout(() => {
@@ -576,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'p13', name: 'Desert Sandal', price: 18675, family: 'Woody', intensity: 'Strong', rating: 4.8, img: 'images/desert_sandal.png', notes: 'Sandalwood, Amber, Spices', topNotes: ['Saffron', 'Pink Pepper'], middleNotes: ['Sandalwood', 'Cedarwood'], baseNotes: ['Amber', 'Oud', 'Vanilla'], heritage: true, allergens: 'Linalool, Coumarin, Eugenol', desc: 'Smooth Mysore sandalwood blended with warm desert spices.' },
         { id: 'p14', name: 'Golden Champa', price: 17015, family: 'Floral', intensity: 'Medium', rating: 4.7, img: 'images/golden_champa.png', notes: 'Champaca, Honey, Jasmine', topNotes: ['Orange Blossom', 'Mandarin'], middleNotes: ['Champaca', 'Jasmine'], baseNotes: ['Honey', 'Musk', 'Amber'], heritage: true, allergens: 'Benzyl Alcohol, Linalool, Limonene', desc: 'Inspired by sacred temple flowers.' },
         { id: 'p15', name: 'Ocean Drift', price: 13695, family: 'Fresh', intensity: 'Mild', rating: 4.5, img: 'images/ocean_drift.png', notes: 'Sea Breeze, Citrus, Driftwood', topNotes: ['Lemon', 'Marine Notes'], middleNotes: ['Sea Salt', 'Blue Lotus'], baseNotes: ['Driftwood', 'Musk'], allergens: 'Limonene, Linalool, Citral', desc: 'Refreshing waves and ocean breeze.' },
-        { id: 'p16', name: 'Velvet Amber', price: 19505, family: 'Woody', intensity: 'Strong', rating: 4.9, img: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=400&q=80', notes: 'Amber, Tonka Bean, Vanilla', topNotes: ['Clove', 'Pink Pepper'], middleNotes: ['Amber', 'Cinnamon'], baseNotes: ['Tonka Bean', 'Vanilla', 'Musk'], allergens: 'Coumarin, Cinnamal, Benzyl Benzoate', desc: 'A warm and addictive amber fragrance.' },
+        { id: 'p16', name: 'Velvet Amber', price: 19505, family: 'Woody', intensity: 'Strong', rating: 4.9, img: 'images/velvet_amber.png', notes: 'Amber, Tonka Bean, Vanilla', topNotes: ['Clove', 'Pink Pepper'], middleNotes: ['Amber', 'Cinnamon'], baseNotes: ['Tonka Bean', 'Vanilla', 'Musk'], allergens: 'Coumarin, Cinnamal, Benzyl Benzoate', desc: 'A warm and addictive amber fragrance.' },
         { id: 'p17', name: 'Garden Bloom', price: 14110, family: 'Floral', intensity: 'Mild', rating: 4.6, img: 'images/garden_bloom.png', notes: 'Peony, Rose, Lily', topNotes: ['Pear', 'Bergamot'], middleNotes: ['Peony', 'Rose', 'Lily'], baseNotes: ['White Musk', 'Sandalwood'], allergens: 'Citronellol, Geraniol, Linalool', desc: 'A fresh blooming spring garden.' },
         { id: 'p18', name: 'Mystic Vetiver', price: 18260, family: 'Earthy', intensity: 'Medium', rating: 4.8, img: 'images/mystic_vetiver.png', notes: 'Vetiver, Moss, Woods', topNotes: ['Lime', 'Green Pepper'], middleNotes: ['Vetiver', 'Iris'], baseNotes: ['Oakmoss', 'Cedarwood', 'Amber'], heritage: true, allergens: 'Evernia Furfuracea, Linalool, Limonene', desc: 'Deep earthy aroma inspired by forest soil.' },
         { id: 'p19', name: 'Sunset Nectar', price: 15355, family: 'Sweet', intensity: 'Medium', rating: 4.7, img: 'images/sunset_nectar.png', notes: 'Peach, Honey, Vanilla', topNotes: ['Peach', 'Apricot'], middleNotes: ['Honey', 'Orange Blossom'], baseNotes: ['Vanilla', 'Caramel', 'Musk'], allergens: 'Benzyl Benzoate, Limonene, Linalool', desc: 'A sweet golden fragrance of sunset fruits.' }
@@ -820,7 +851,7 @@ document.addEventListener('DOMContentLoaded', () => {
             display.innerHTML = `
                 <div style="animation: fadeIn 0.5s ease;">
                     <h4>${family} Notes</h4>
-                    <div class="tag-row" style="margin-top: 1rem;">${data.notes.map(n => `<span class="tag">${n}</span>`).join('')}</div>
+                    <div class="tag-row" style="margin-top: 1rem;">${data.notes.map(n => `<span class="tag" style="cursor:pointer;" onclick="filterCollectionByNote('${n}')">${n}</span>`).join('')}</div>
                     <p style="margin-top: 1.5rem;">Recommended Scents:</p>
                     <div class="mini-scroll" style="display: flex; gap: 1rem; overflow-x: auto; margin-top: 1rem; padding-bottom: 0.5rem;">
                         ${data.perfumes.map(id => {
@@ -843,8 +874,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const resultsContainer = document.getElementById('finder-results');
 
             let filtered = perfumeData.filter(p => {
-                const matchFam = family === 'All' || p.family === family;
-                const matchInt = intensity === 'All' || p.intensity === intensity;
+                const matchFam = family === 'All' || p.family.toLowerCase() === family.toLowerCase();
+                const matchInt = intensity === 'All' || p.intensity.toLowerCase() === intensity.toLowerCase();
                 const matchQuery = !query || 
                                   p.name.toLowerCase().includes(query) || 
                                   p.notes.toLowerCase().includes(query) || 
@@ -911,7 +942,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 html = `<div class="profile-section"><h3>Payment Methods</h3><p class="empty-msg">No payment rituals saved.</p></div>`;
                 break;
             case 'wishlist':
-                html = `<div class="profile-section"><h3>Wishlist Vault</h3><p class="empty-msg">Your vault is currently empty.</p></div>`;
+                if (wishlist.length === 0) {
+                    html = `<div class="profile-section"><h3>Wishlist Vault</h3><p class="empty-msg">Your vault is currently empty.</p></div>`;
+                } else {
+                    html = `<div class="profile-section"><h3>Wishlist Vault</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            ${wishlist.map(id => {
+                                const p = perfumeData.find(x => x.id === id);
+                                if (!p) return '';
+                                return `
+                                    <div class="mini-card" onclick="openProductDetail('${p.id}')" style="position:relative;">
+                                        <button onclick="event.stopPropagation(); toggleWishlist('${p.id}')" style="position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.5); color:white; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; z-index:10; font-size:12px; display:flex; align-items:center; justify-content:center;">✕</button>
+                                        <img src="${p.img}" alt="${p.name}" style="height: 120px; object-fit: cover;">
+                                        <h4 style="margin-top: 0.5rem; font-size: 0.9rem;">${p.name}</h4>
+                                        <span style="font-size: 0.8rem;">${formatPrice(p.price)}</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>`;
+                }
                 break;
         }
         content.innerHTML = `<div style="animation: fadeIn 0.4s ease;">${html}</div>`;
@@ -1019,10 +1069,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = infoData[type];
         if (!data) return;
 
-        document.getElementById('info-title').innerText = data.title;
-        document.getElementById('info-subtitle').innerText = data.subtitle;
-        document.getElementById('info-body').innerHTML = data.content;
+        const titleEl = document.getElementById('info-title');
+        const subtitleEl = document.getElementById('info-subtitle');
+        const bodyEl = document.getElementById('info-body');
+
+        if (titleEl) titleEl.innerText = data.title;
+        if (subtitleEl) subtitleEl.innerText = data.subtitle;
+        if (bodyEl) bodyEl.innerHTML = data.content;
         switchScreen('info-screen');
+    };
+
+    window.generatePoetry = () => {
+        const select = document.getElementById('poetry-scent-select');
+        const display = document.getElementById('poetry-display');
+        if (!select || !display) return;
+
+        const chosen = select.value;
+        const poems = {
+            'Nocturnal Silk': `Wrapped in dark velvet and shadow's embrace,\nA touch of black plum in a sacred space.\nOud and vanilla in twilight soft spun,\nWhere silk meets the starlight when day is all done.`,
+            'Ethereal Dew': `Morning breath whispers through petals of white,\nBergamot dancing in glistening light.\nSea salt and blossom where sky meets the sea,\nPure as the dewdrop that sets spirit free.`,
+            'Mitti (Rain)': `Parched earth awakening to sky's gentle weeping,\nAncient rain secrets the soil has been keeping.\nPetrichor, sandalwood, ozone divine,\nNature's first drop in a vessel of mine.`,
+            'Royal Spice': `Cardamom crowns and a warm amber fire,\nSpices of kings and a noble desire.\nCinnamon whispers of kingdoms long past,\nAn essence majestic that ever shall last.`
+        };
+
+        display.style.opacity = '0';
+        setTimeout(() => {
+            display.innerText = poems[chosen] || `A subtle fragrance, soft and rare,\nA golden ember in the air.\nIt lingers gently on the skin,\nWhere dreams end and memories begin.`;
+            display.style.opacity = '1';
+        }, 300);
     };
 
     // Attach footer and house links
@@ -1061,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = filteredData.map(p => `
             <div class="collection-card glass" onclick="openProductPage('${p.id}')">
                 ${p.heritage ? `<span class="heritage-badge">Indian Heritage</span>` : ''}
-                ${p.aiRecommended ? `<span class="heritage-badge" style="top: 3rem; border-bottom-color: var(--text-secondary); color: var(--text-secondary);">AI Selection</span>` : ''}
+                ${p.aiRecommended ? `<span class="heritage-badge" style="top: 3rem; color: var(--text-secondary);">AI Selection</span>` : ''}
                 <div class="card-img" style="background: url('${p.img}') center/cover;">
                     <div class="card-quick-actions">
                         <button class="quick-action-btn" onclick="event.stopPropagation(); toggleWishlist('${p.id}')">Wishlist</button>
@@ -1099,9 +1173,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
-        if (trendingScroll) trendingScroll.innerHTML = renderCards(perfumeData.slice(0, 4));
-        if (newArrivalsScroll) newArrivalsScroll.innerHTML = renderCards([perfumeData[6], perfumeData[4], perfumeData[3], perfumeData[1]]);
-        if (seasonalScroll) seasonalScroll.innerHTML = renderCards([perfumeData[2], perfumeData[4], perfumeData[5], perfumeData[7], perfumeData[3]]);
+        if (trendingScroll) trendingScroll.innerHTML = renderCards(perfumeData.slice(0, 8));
+        if (newArrivalsScroll) newArrivalsScroll.innerHTML = renderCards([perfumeData[6], perfumeData[4], perfumeData[3], perfumeData[1], perfumeData[8], perfumeData[10], perfumeData[12], perfumeData[14]]);
+        if (seasonalScroll) seasonalScroll.innerHTML = renderCards([perfumeData[2], perfumeData[4], perfumeData[5], perfumeData[7], perfumeData[3], perfumeData[9], perfumeData[11], perfumeData[13]]);
         
         observeLazyImages();
     };
@@ -1193,8 +1267,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="item-meta" style="text-align: right; display: flex; flex-direction: column; gap: 0.8rem; justify-content: space-between; height: 100px;">
                         <span style="display: block; font-weight: 600; font-size: 1.2rem; color: var(--text-primary);">${formatPrice(item.price * item.qty)}</span>
                         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <button class="text-btn" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-lavender); background: none; border: none; cursor: pointer; border-bottom: 1px solid transparent; transition: border 0.3s;" onclick="moveToWishlist(${i})">Move to Wishlist</button>
-                            <button class="text-btn" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); background: none; border: none; cursor: pointer; border-bottom: 1px solid transparent; transition: border 0.3s;" onclick="removeFromCart(${i})">Remove</button>
+                            <button class="text-btn" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-lavender); background: none; border: none; cursor: pointer; transition: border 0.3s;" onclick="moveToWishlist(${i})">Move to Wishlist</button>
+                            <button class="text-btn" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); background: none; border: none; cursor: pointer; transition: border 0.3s;" onclick="removeFromCart(${i})">Remove</button>
                         </div>
                     </div>
                 </div>`).join('');
@@ -1328,98 +1402,248 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- Creative Atelier Logic ---
-    window.updateMoleculeView = () => {
-        const s = document.getElementById('mol-sweet').value;
-        const w = document.getElementById('mol-wood').value;
-        const f = document.getElementById('mol-fresh').value;
-        document.getElementById('mol-s-val').innerText = s + '%';
-        document.getElementById('mol-w-val').innerText = w + '%';
-        document.getElementById('mol-f-val').innerText = f + '%';
+    // --- Advanced Scent Experience Logic ---
+    
+    // 1. Your Scent DNA Profile
+    let dnaStep = 0;
+    let dnaAnswers = {};
+    const dnaQuestions = [
+        { q: "Which morning atmosphere resonates with you?", options: ["Dewy Garden", "Brisk Mountain Air", "Sun-drenched Citrus Grove", "Coastal Mist"] },
+        { q: "Select your preferred texture of elegance.", options: ["Sheer Silk", "Deep Velvet", "Crinkled Linen", "Polished Stone"] },
+        { q: "Choose your favorite twilight ritual.", options: ["Stargazing in silence", "Evening gala with friends", "Cozying up by a fire", "Walking in a night garden"] },
+        { q: "What level of sensory presence do you desire?", options: ["A subtle whisper", "A steady signature", "A bold declaration"] }
+    ];
 
-        const visualizer = document.getElementById('molecule-visualizer');
-        const hue = (s * 1.5) + (f * 0.8) - (w * 0.5);
-        const scale = 0.8 + (s / 200) + (w / 200);
+    window.openScentDNA = () => {
+        dnaStep = 0;
+        dnaAnswers = {};
+        openOverlay(document.getElementById('dna-profile-overlay'));
+        renderDNAModal();
+    };
 
-        visualizer.style.color = `hsl(${hue + 250}, 70%, 70%)`;
-        visualizer.style.transform = `scale(${scale}) rotate(${w}deg)`;
-        visualizer.style.textShadow = `0 0 ${10 + (s/5)}px hsl(${hue + 250}, 70%, 70%)`;
-        
-        let desc = "Balanced formulation. Moderate longevity and sillage.";
-        const sweetFactor = s > 70 ? "High sweetness yields immediate projection but volatile longevity." : "";
-        const woodFactor = w > 70 ? "Heavy woody base molecules ensure extended intimate longevity." : "";
-        const freshFactor = f > 70 ? "Crisp top note saturation. Brilliant opening, short diffusion." : "";
-        
-        desc = sweetFactor || woodFactor || freshFactor || "A harmonious blend of molecular structures.";
-        
-        let descEl = document.getElementById('mol-logic-desc');
-        if(!descEl) {
-            visualizer.innerHTML += `<div id="mol-logic-desc" style="font-size:0.85rem; margin-top:3rem; color:var(--text-secondary); font-family: var(--font-body); letter-spacing:0.5px; line-height:1.4;">${desc}</div>`;
+    const renderDNAModal = () => {
+        const container = document.getElementById('dna-quiz-container');
+        if (dnaStep < dnaQuestions.length) {
+            const current = dnaQuestions[dnaStep];
+            const sel = dnaAnswers[dnaStep] !== undefined ? dnaAnswers[dnaStep] : null;
+            container.innerHTML = `
+                <span class="tag">DNA Builder: Step ${dnaStep + 1}/${dnaQuestions.length}</span>
+                <h2 style="margin: 1.5rem 0;">${current.q}</h2>
+                <div class="mood-grid" style="margin-top: 2rem;">
+                    ${current.options.map((opt, i) => `
+                        <button class="mood-card" style="${sel === i ? 'border: 2px solid var(--text-primary); transform: scale(1.02);' : ''}" onclick="selectDNAOption(${i})"><span class="mood-text">${opt}</span></button>
+                    `).join('')}
+                </div>
+                <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    ${dnaStep > 0 ? `<button class="secondary-btn" onclick="dnaStep--; renderDNAModal()">Back</button>` : `<button class="secondary-btn" onclick="closeOverlay(document.getElementById('dna-profile-overlay'))">Cancel</button>`}
+                    <button class="cta-btn" ${sel === null ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''} onclick="nextDNA()">Next</button>
+                </div>
+            `;
         } else {
-            descEl.innerText = desc;
+            generateDNAProfile();
         }
     };
 
-    window.updateVisualScent = (type, btn) => {
-        document.querySelectorAll('#visual-toggles .note-chip').forEach(b => b.classList.remove('active'));
-        if (btn) btn.classList.add('active');
+    window.selectDNAOption = (idx) => {
+        dnaAnswers[dnaStep] = idx;
+        renderDNAModal();
+    };
 
-        display.style.animation = 'none';
-        display.offsetHeight; // trigger reflow
-        display.style.animation = 'pulse 4s infinite alternate ease-in-out';
-
-        if (type === 'floral') {
-            display.style.background = 'radial-gradient(circle, #ff9a9e 0%, #fecfef 100%)';
-            display.style.boxShadow = '0 0 60px rgba(255,154,158,0.6)';
-            display.style.borderRadius = '30% 70% 70% 30% / 30% 30% 70% 70%';
-        } else if (type === 'woody') {
-            display.style.background = 'conic-gradient(from 180deg at 50% 50%, #603813 0%, #b29f94 100%)';
-            display.style.boxShadow = '0 0 60px rgba(96,56,19,0.6)';
-            display.style.borderRadius = '50% 50% 20% 80% / 25% 80% 20% 75%';
-        } else if (type === 'fresh') {
-            display.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
-            display.style.boxShadow = '0 0 60px rgba(79,172,254,0.6)';
-            display.style.borderRadius = '50%';
+    window.nextDNA = () => {
+        if (dnaAnswers[dnaStep] !== undefined) {
+            dnaStep++;
+            renderDNAModal();
         }
     };
 
-    window.generatePoetry = () => {
-        const selected = document.getElementById('poetry-scent-select').value;
-        const display = document.getElementById('poetry-display');
-        display.style.transition = 'opacity 0.5s';
+    const generateDNAProfile = () => {
+        const container = document.getElementById('dna-quiz-container');
+        // Simple logic to determine profile
+        let profileName = "Versatile Essence Explorer";
+        let preferred = ["Bergamot", "White Musk"];
+        let avoided = ["Heavy Oud"];
+        let intensity = "Medium";
+
+        if (dnaAnswers[1] === 1) { // Velvet
+            profileName = "Bold Woody Signature";
+            preferred = ["Oud", "Sandalwood", "Amber"];
+            intensity = "Strong";
+        } else if (dnaAnswers[0] === 2) { // Citrus
+            profileName = "Warm Floral Lover";
+            preferred = ["Orange Blossom", "Jasmine", "Vanilla"];
+            intensity = "Medium";
+        } else if (dnaAnswers[0] === 1 || dnaAnswers[3] === 0) { // Fresh
+            profileName = "Ethereal Fresh minimalist";
+            preferred = ["Sea Salt", "Tea", "Mint"];
+            intensity = "Mild";
+        }
+
+        const recommendations = perfumeData.filter(p => preferred.some(n => p.notes.includes(n))).slice(0, 2);
+
+        container.innerHTML = `
+            <div class="dna-profile-result">
+                <span class="tag">Your DNA Signature</span>
+                <div class="dna-badge">${profileName}</div>
+                <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left;">
+                    <div class="glass" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4 style="color: var(--accent-lavender); font-size: 0.9rem;">RESONATING NOTES</h4>
+                        <p style="margin-top: 0.5rem;">${preferred.join(', ')}</p>
+                    </div>
+                    <div class="glass" style="padding: 1.5rem; border-radius: 12px;">
+                        <h4 style="color: var(--text-secondary); font-size: 0.9rem;">NOTES TO AVOID</h4>
+                        <p style="margin-top: 0.5rem;">${avoided.join(', ')}</p>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; text-align: left;">
+                    <h4 style="font-size: 0.9rem; color: var(--text-secondary);">INTENSITY PREFERENCE: <span style="color: var(--text-primary);">${intensity}</span></h4>
+                </div>
+                <div style="margin-top: 2rem; text-align: left;">
+                    <h4 style="margin-bottom: 1rem;">Recommended for Your DNA:</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        ${recommendations.map(p => `
+                            <div class="mini-card" onclick="openProductDetail('${p.id}')" style="flex: 1; min-width: 0; padding: 1rem;">
+                                <img src="${p.img}" style="height: 80px; margin-bottom: 0.5rem;">
+                                <h5 style="font-size: 0.8rem;">${p.name}</h5>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <button class="cta-btn" style="width: 100%; margin-top: 2rem;" onclick="showToast('Profile saved to your essence vault!'); closeOverlay(document.getElementById('dna-profile-overlay'))">Save to Profile</button>
+            </div>
+        `;
+    };
+
+    // 2. Compare Fragrances
+    let comparisonSelection = [];
+    window.openCompareScents = () => {
+        comparisonSelection = [];
+        const selector = document.getElementById('comparison-selector');
+        const perfumesToPick = perfumeData; // Show all
+        selector.innerHTML = `
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; max-height: 400px; overflow-y: auto; padding-right: 1rem;">
+                ${perfumesToPick.map(p => `
+                    <div class="comparison-pick ${comparisonSelection.includes(p.id) ? 'active' : ''}" onclick="toggleComparisonPick('${p.id}', this)" style="cursor: pointer; position: relative;">
+                        <img src="${p.img}" style="width: 100%; height: 80px; object-fit: cover; border-radius: 8px;">
+                        <p style="font-size: 0.7rem; margin-top: 5px; text-align: center;">${p.name}</p>
+                    </div>
+                `).join('')}
+            </div>
+            <button class="cta-btn" style="width: 100%; margin-top: 2rem;" onclick="generateComparison()">Compare Selected</button>
+        `;
+        document.getElementById('comparison-table-container').innerHTML = '';
+        openOverlay(document.getElementById('comparison-overlay'));
+    };
+
+    window.toggleComparisonPick = (id, el) => {
+        if (comparisonSelection.includes(id)) {
+            comparisonSelection = comparisonSelection.filter(x => x !== id);
+            el.style.opacity = '1';
+            el.style.border = 'none';
+        } else {
+            if (comparisonSelection.length >= 3) {
+                showToast("Limit: 3 perfumes for comparison.");
+                return;
+            }
+            comparisonSelection.push(id);
+            el.style.opacity = '0.5';
+            el.style.border = '2px solid var(--accent-lavender)';
+        }
+    };
+
+    window.generateComparison = () => {
+        if (comparisonSelection.length < 2) {
+            showToast("Please select at least 2 perfumes.");
+            return;
+        }
+        const selected = comparisonSelection.map(id => perfumeData.find(p => p.id === id));
+        const table = document.getElementById('comparison-table-container');
+        table.innerHTML = `
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        ${selected.map(p => `<th>${p.name}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Family</td>${selected.map(p => `<td>${p.family}</td>`).join('')}</tr>
+                    <tr><td>Top Notes</td>${selected.map(p => `<td>${p.topNotes.join(', ')}</td>`).join('')}</tr>
+                    <tr><td>Heart Notes</td>${selected.map(p => `<td>${p.middleNotes.join(', ')}</td>`).join('')}</tr>
+                    <tr><td>Base Notes</td>${selected.map(p => `<td>${p.baseNotes.join(', ')}</td>`).join('')}</tr>
+                    <tr><td>Allergens</td>${selected.map(p => `<td>${p.allergens || 'None'}</td>`).join('')}</tr>
+                    <tr><td>Longevity</td>${selected.map(p => `<td>${p.intensity === 'Strong' ? '12+ Hours' : '6-8 Hours'}</td>`).join('')}</tr>
+                    <tr><td>Intensity</td>${selected.map(p => `<td>${p.intensity}</td>`).join('')}</tr>
+                    <tr><td>Best For</td>${selected.map(p => `<td>${p.family === 'Fresh' ? 'Daytime' : 'Evening'}</td>`).join('')}</tr>
+                    <tr><td>Price</td>${selected.map(p => `<td>${formatPrice(p.price)}</td>`).join('')}</tr>
+                </tbody>
+            </table>
+        `;
+    };
+
+    // 3. Your Scent Story
+    window.openScentStory = () => {
+        const select = document.getElementById('story-scent-select');
+        select.innerHTML = perfumeData.slice(0, 10).map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+        document.getElementById('story-display').innerHTML = '<p class="empty-msg">Select a fragrance to unveil its atmospheric soul.</p>';
+        document.getElementById('story-actions').style.display = 'none';
+        openOverlay(document.getElementById('scent-story-overlay'));
+    };
+
+    window.generateScentStory = () => {
+        const id = document.getElementById('story-scent-select').value;
+        const p = perfumeData.find(x => x.id === id);
+        const display = document.getElementById('story-display');
+        
         display.style.opacity = '0';
-
         setTimeout(() => {
-            let poetry = "";
-            if (selected === "Nocturnal Silk") {
-                poetry = "Moonlight woven in jasmine thread,\nWhere shadows bloom and day is dead.\nA velvet touch upon the skin,\nA quiet secret held within.";
-            } else if (selected === "Ethereal Dew") {
-                poetry = "Morning mist upon the glass,\nA fleeting breath that comes to pass.\nThe ocean’s salt, the bright sunrise,\nA world awake in gentle sighs.";
-            } else if (selected === "Mitti (Rain)") {
-                poetry = "The parched earth drinks the silver rain,\nAnd rising up, it breathes again.\nA temple bell, a thunder's roll,\nThe soil’s pure song unto the soul.";
-            } else if (selected === "Royal Spice") {
-                poetry = "Ancient embers glowing red,\nWhere kings have dined and vows were said.\nA trail of amber, clove, and heat,\nA kingdom resting at your feet.";
+            let story = "";
+            let tagline = "Echoes of Velvet Night";
+            
+            if (p.family === 'Floral') {
+                story = `Like a sun-drenched walk through an imperial garden at dawn, the notes of ${p.topNotes[0]} bloom delicately against the pulse. It is a narrative of elegance and fleeting whispers.`;
+                tagline = "A Bloom in the Moonlight";
+            } else if (p.family === 'Woody') {
+                story = `Ancient roots and sacred resins converge in ${p.name}. The grounding presence of ${p.baseNotes[0]} invokes a memory of monolithic strength and silent, timeless forests.`;
+                tagline = "Ancient Silence, Bottled";
+            } else if (p.family === 'Fresh') {
+                story = `Crisp and ethereal, this essence captures the sharp clarity of ${p.topNotes[0]} surrendering to the vast oceanic depth of ${p.middleNotes[0]}. It is the scent of sudden lucidity.`;
+                tagline = "The Infinite Awakening";
             } else {
-                poetry = `A sudden breeze brings ${selected},\nAnd stirs a memory softly wept.\nBoth wild and tame, it claims the night,\nAn unseen spark of borrowed light.`;
+                story = `A mysterious encounter between ${p.topNotes[0]} and the depth of ${p.baseNotes[0]}. It defies definition, lingering like a secret told in a lost language.`;
+                tagline = `The Enigma of ${p.name}`;
             }
 
-            display.innerText = poetry;
+            display.innerHTML = `<p class="story-display">${story}</p><span class="story-tagline">“${tagline}”</span>`;
             display.style.opacity = '1';
+            document.getElementById('story-actions').style.display = 'flex';
             
-            // Add copy button if not present
-            if (!document.getElementById('copy-poetry-btn')) {
-                const copyBtn = document.createElement('button');
-                copyBtn.id = 'copy-poetry-btn';
-                copyBtn.className = 'secondary-btn';
-                copyBtn.style.marginTop = '1rem';
-                copyBtn.innerText = 'Copy Poetry';
-                copyBtn.onclick = () => {
-                    navigator.clipboard.writeText(poetry);
-                    showToast('Poetry copied to soul collection!');
-                };
-                display.parentElement.appendChild(copyBtn);
-            }
-        }, 800);
+            document.getElementById('copy-story-btn').onclick = () => {
+                navigator.clipboard.writeText(`${story}\n"${tagline}"`);
+                showToast('Story inscribed to clipboard.');
+            };
+            document.getElementById('save-story-btn').onclick = () => showToast('Narrative saved to your profile.');
+        }, 500);
+    };
+
+    // 4. Trending Scent Insights
+    const renderTrendingInsights = () => {
+        const container = document.getElementById('trending-insights-content');
+        if (!container) return;
+        
+        const insights = [
+            { label: "Most Loved Note", val: "Mysore Sandalwood", icon: "🪵" },
+            { label: "Trending Family", val: "Spicy Oriental", icon: "✨" },
+            { label: "Perfect Duo", val: "Rose + Oud", icon: "🌹" },
+            { label: "Monthly Growth", val: "+24% Jasmine", icon: "📈" }
+        ];
+
+        container.innerHTML = insights.map(i => `
+            <div class="insight-item glass" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">${i.icon}</div>
+                <span class="insight-val" style="font-size: 1.5rem;">${i.val}</span>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">${i.label}</p>
+            </div>
+        `).join('');
     };
 
     // --- Lazy Loading & Wishlist ---
@@ -1451,13 +1675,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.toggleWishlist = (id) => {
-        showToast("Added to your wishlist vault.");
+        const index = wishlist.indexOf(id);
+        if (index > -1) {
+            wishlist.splice(index, 1);
+            showToast("Removed from your wishlist vault.");
+        } else {
+            wishlist.push(id);
+            showToast("Added to your wishlist vault.");
+        }
+        const tab = document.querySelector('.profile-tabs .nav-item[data-tab="wishlist"]');
+        if (tab && tab.classList.contains('active')) switchProfileTab('wishlist');
     };
 
     // --- Initial State ---
     // --- Feature logic for Wishlist, Promo, Profile ---
     window.moveToWishlist = (idx) => {
         const item = cart[idx];
+        if (!wishlist.includes(item.id)) {
+            wishlist.push(item.id);
+        }
         showToast(`${item.name} moved to wishlist vault.`);
         cart.splice(idx, 1);
         updateCartUI();
@@ -1494,16 +1730,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- Settings Persistence ---
-    const settingsToggles = ['2fa-toggle', 'ai-toggle', 'push-toggle'];
+    // --- Settings Persistence & Sync ---
+    const settingsToggles = ['2fa-toggle', 'ai-toggle', 'push-toggle', '2fa-toggle-drawer', 'ai-toggle-drawer', 'push-toggle-drawer'];
     settingsToggles.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-            const saved = localStorage.getItem(id);
+            const baseKey = id.replace('-drawer', '');
+            const saved = localStorage.getItem(baseKey);
             if (saved !== null) el.checked = saved === 'true';
             el.onchange = () => {
-                localStorage.setItem(id, el.checked);
-                showToast(`${el.closest('.setting-item').querySelector('.setting-label span').innerText} updated.`);
+                localStorage.setItem(baseKey, el.checked);
+                
+                // Sync duplicate toggle in drawer or main section
+                const otherId = id.includes('-drawer') ? baseKey : `${id}-drawer`;
+                const otherEl = document.getElementById(otherId);
+                if (otherEl) otherEl.checked = el.checked;
+
+                const labelSpan = el.closest('.setting-item')?.querySelector('.setting-label span');
+                if (labelSpan) showToast(`${labelSpan.innerText} updated.`);
             };
         }
     });
@@ -1511,6 +1755,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Initial State ---
     switchScreen('home');
     renderHomeCollections();
+    renderTrendingInsights();
     console.log('Inai Mobile Initialized');
 });
 
